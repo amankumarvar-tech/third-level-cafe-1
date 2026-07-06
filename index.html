@@ -1,0 +1,3047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Third Level Café | Kashmiri Gate Metro, Delhi</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══ RESET & VARIABLES ═══ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#3D0000;--bg2:#480000;--sur:#520000;--s2:#5E0000;--bor:#8B1010;
+  --red:#E8171B;--rg:rgba(232,23,27,.3);--gold:#F5A623;--gg:rgba(245,166,35,.25);
+  --w:#F0F0F0;--m:#777;--gr:#22C55E;--bl:#3B82F6;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w);font-family:'Inter',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--bor);border-radius:2px}
+a{text-decoration:none;color:inherit}
+
+/* ══════════════════════════════════
+   LOGIN SCREEN
+══════════════════════════════════ */
+/* ══ LOGIN SCREEN ══ */
+#loginScreen{
+  position:fixed;inset:0;z-index:10000;
+  background:#3D0000;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;overflow-y:auto;
+}
+.login-bg-pattern{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.login-bg-pattern::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(232,23,27,.06) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(232,23,27,.06) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:gridScroll 20s linear infinite;
+}
+.login-bg-pattern::after{
+  content:'';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(ellipse,rgba(232,23,27,.12) 0%,transparent 65%);
+}
+@keyframes gridScroll{to{transform:translateY(40px)}}
+
+.login-wrap{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  width:100%;max-width:860px;
+  min-height:560px;
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 0 100px rgba(232,23,27,.2);
+}
+
+/* Left Panel — Red brand side */
+.login-left{
+  background:linear-gradient(160deg,#6B0000 0%,#E8171B 45%,#6B0000 100%);
+  padding:48px 40px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+}
+.login-left::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.ll-coin{font-size:52px;margin-bottom:20px;animation:coinSpin 4s ease-in-out infinite;position:relative}
+@keyframes coinSpin{0%,100%{transform:rotateY(0deg)}50%{transform:rotateY(180deg)}}
+.ll-logo{
+  font-family:'Bebas Neue',cursive;
+  line-height:1;letter-spacing:3px;position:relative;margin-bottom:16px;
+}
+.ll-the{display:block;font-size:13px;color:rgba(255,215,0,.8);letter-spacing:6px;margin-bottom:4px}
+.ll-main{display:block;font-size:38px;color:#FFD700;text-shadow:0 0 20px rgba(255,215,0,.4)}
+.ll-cafe{display:block;font-size:13px;color:rgba(255,215,0,.8);letter-spacing:6px;margin-top:4px}
+.ll-tagline{
+  font-size:13px;color:rgba(255,255,255,.7);
+  line-height:1.75;max-width:220px;
+  font-style:italic;margin-bottom:24px;position:relative;
+}
+.ll-badge{
+  background:rgba(0,0,0,.25);border:1px solid rgba(255,215,0,.3);
+  border-radius:30px;padding:8px 18px;
+  font-size:12px;color:#FFD700;font-weight:700;position:relative;
+}
+.ll-features{
+  margin-top:28px;display:flex;flex-direction:column;gap:10px;
+  width:100%;position:relative;
+}
+.ll-feat{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(0,0,0,.2);border-radius:8px;padding:10px 14px;
+  font-size:12px;color:rgba(255,255,255,.85);text-align:left;
+}
+.ll-feat-icon{font-size:16px;flex-shrink:0}
+
+/* Right Panel — Form side */
+.login-right{
+  background:#520000;
+  padding:48px 40px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.lr-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);
+  color:var(--gold);padding:4px 14px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.lr-title{font-size:26px;font-weight:800;margin-bottom:4px;color:#fff}
+.lr-sub{font-size:13px;color:#888;margin-bottom:28px;line-height:1.6}
+
+/* Google Button */
+.google-btn{
+  width:100%;
+  background:#fff;color:#3c4043;
+  border:none;border-radius:9px;
+  padding:14px 20px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 2px 12px rgba(0,0,0,.4);
+  margin-bottom:14px;
+}
+.google-btn:hover{box-shadow:0 6px 24px rgba(0,0,0,.5);transform:translateY(-1px)}
+.google-btn:active{transform:scale(.98)}
+.g-logo{display:flex;align-items:center;font-weight:900;font-size:16px}
+.g-logo .g1{color:#4285F4}.g-logo .g2{color:#EA4335}
+.g-logo .g3{color:#FBBC05}.g-logo .g4{color:#4285F4}
+.g-logo .g5{color:#34A853}.g-logo .g6{color:#EA4335}
+
+.divider{
+  display:flex;align-items:center;gap:12px;
+  margin:4px 0 14px;color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;
+}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#3A0A0A}
+
+.phone-btn{
+  width:100%;background:transparent;color:#fff;
+  border:1.5px solid #3A0A0A;border-radius:9px;
+  padding:13px 20px;font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .2s;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.phone-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,166,35,.06)}
+
+.guest-link{
+  text-align:center;font-size:12px;color:#666;cursor:pointer;
+  transition:color .2s;padding:6px;
+}
+.guest-link:hover{color:#999}
+
+.login-badge{
+  margin-top:20px;padding:12px 14px;
+  background:rgba(232,23,27,.07);border:1px solid rgba(232,23,27,.2);
+  border-radius:8px;font-size:12px;color:#999;line-height:1.75;
+}
+.login-badge b{color:var(--gold)}
+
+.lr-terms{
+  margin-top:16px;font-size:11px;color:#555;text-align:center;line-height:1.6;
+}
+.lr-terms a{color:var(--gold);text-decoration:none}
+
+/* Login fade out */
+@keyframes loginOut{to{opacity:0;pointer-events:none}}
+.login-out{animation:loginOut .4s ease forwards}
+
+/* Responsive login */
+@media(max-width:680px){
+  .login-wrap{grid-template-columns:1fr}
+  .login-left{display:none}
+  .login-right{padding:36px 28px}
+}
+
+/* ══════════════════════════════════
+   MAIN SITE (hidden until login)
+══════════════════════════════════ */
+#mainSite{display:block;animation:siteIn .5s ease}
+@keyframes siteIn{from{opacity:0}to{opacity:1}}
+
+/* ══════════════════════════════════
+   TOP RIBBON
+══════════════════════════════════ */
+.ribbon{
+  background:linear-gradient(90deg,#8B0000,var(--red),#8B0000);
+  text-align:center;padding:9px 5%;font-size:13px;font-weight:600;
+}
+.ribbon span{color:var(--gold);cursor:pointer;text-decoration:underline}
+
+/* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(40,0,0,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--bor);
+  padding:0 5%;height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.nav-logo{
+  font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:3px;
+  color:var(--red);text-shadow:0 0 16px var(--rg);white-space:nowrap;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{color:var(--m);font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-user{
+  display:flex;align-items:center;gap:8px;
+  background:var(--sur);border:1px solid var(--bor);
+  border-radius:24px;padding:5px 14px 5px 8px;font-size:13px;cursor:pointer;
+  transition:border-color .2s;
+}
+.nav-user:hover{border-color:var(--gold)}
+.nav-avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#000;
+}
+.nav-cta{
+  background:var(--red);color:#fff;border:none;
+  padding:8px 20px;border-radius:7px;font-size:13px;font-weight:700;
+  cursor:pointer;white-space:nowrap;transition:background .2s;
+}
+.nav-cta:hover{background:#C0141B}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:80px 5% 60px;
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,#6B0000,#3D0000 70%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(232,23,27,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(232,23,27,.04) 1px,transparent 1px);
+  background-size:44px 44px;animation:gridScroll 25s linear infinite;
+}
+.hero-badge{
+  position:relative;display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);
+  color:var(--gold);padding:6px 20px;border-radius:30px;
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:26px;
+}
+.hero-title{position:relative;font-family:'Bebas Neue',cursive;line-height:.92;margin-bottom:22px}
+.h-the{display:block;font-size:clamp(16px,4vw,36px);color:var(--gold);letter-spacing:10px}
+.h-main{
+  display:block;font-size:clamp(60px,13vw,130px);
+  color:var(--red);letter-spacing:3px;
+  text-shadow:0 0 40px var(--rg),0 0 90px rgba(232,23,27,.2);
+  animation:neonBreath 3s ease-in-out infinite;
+}
+.h-cafe{display:block;font-size:clamp(16px,4vw,36px);color:var(--gold);letter-spacing:10px}
+@keyframes neonBreath{
+  0%,100%{text-shadow:0 0 40px var(--rg),0 0 90px rgba(232,23,27,.2)}
+  50%{text-shadow:0 0 65px rgba(232,23,27,.8),0 0 130px rgba(232,23,27,.4)}
+}
+.hero-tagline{
+  position:relative;font-size:clamp(14px,2vw,17px);color:var(--m);
+  max-width:500px;line-height:1.8;margin-bottom:34px;
+}
+.hero-tagline b{color:var(--gold)}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;position:relative}
+.btn-r{
+  background:var(--red);color:#fff;border:none;
+  padding:13px 30px;border-radius:9px;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+}
+.btn-r:hover{background:#C0141B;transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,23,27,.4)}
+.btn-g{
+  background:transparent;color:var(--gold);border:1.5px solid var(--gold);
+  padding:13px 30px;border-radius:9px;font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .2s;
+}
+.btn-g:hover{background:rgba(245,166,35,.1);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0;
+  margin-top:48px;position:relative;
+}
+.hstat{padding:0 28px;text-align:center}
+.hstat+.hstat{border-left:1px solid var(--bor)}
+.snum{font-family:'Bebas Neue',cursive;font-size:36px;color:var(--gold);letter-spacing:2px}
+.slbl{font-size:11px;color:var(--m);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+.hero-scroll{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  color:var(--m);font-size:10px;letter-spacing:2px;
+  animation:scrollBob 2s ease-in-out infinite;
+}
+@keyframes scrollBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-7px)}}
+.fbg{position:absolute;font-size:20px;opacity:.05;animation:floatUp linear infinite;pointer-events:none}
+@keyframes floatUp{from{transform:translateY(110vh) rotate(0deg)}to{transform:translateY(-100px) rotate(720deg)}}
+
+/* ══════════════════════════════════
+   SHARED
+══════════════════════════════════ */
+.section{padding:76px 5%}
+.tag{
+  display:inline-block;
+  background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);
+  color:var(--gold);padding:4px 16px;border-radius:30px;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;
+}
+.sec-title{
+  font-family:'Bebas Neue',cursive;
+  font-size:clamp(32px,6vw,56px);letter-spacing:3px;line-height:1;margin-bottom:12px;
+}
+.sec-title span{color:var(--red)}
+.sec-desc{color:var(--m);font-size:15px;line-height:1.8;max-width:580px}
+.tc{text-align:center}
+
+/* ══════════════════════════════════
+   IMAGE GALLERY (scroll animations)
+══════════════════════════════════ */
+.gallery-section{
+  background:#480000;
+  border-top:1px solid var(--bor);border-bottom:1px solid var(--bor);
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;margin-top:40px;
+}
+
+/* 3D Flip Card */
+.flip-card{perspective:1000px;cursor:pointer}
+.flip-inner{
+  position:relative;width:100%;padding-top:72%;
+  transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+.flip-card:hover .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{
+  position:absolute;inset:0;
+  backface-visibility:hidden;border-radius:14px;overflow:hidden;
+}
+.flip-back{transform:rotateY(180deg)}
+.flip-img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .4s ease;
+}
+.flip-card:hover .flip-img{transform:scale(1.05)}
+.flip-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.1) 60%,transparent);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:18px;
+}
+.fo-name{font-size:17px;font-weight:700;margin-bottom:3px}
+.fo-price{color:var(--gold);font-size:15px;font-weight:700}
+.fo-badge{
+  position:absolute;top:12px;right:12px;
+  background:var(--red);color:#fff;
+  padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;
+}
+.flip-back-content{
+  width:100%;height:100%;
+  background:linear-gradient(135deg,#1a0404,#0d0d0d);
+  border:1px solid var(--bor);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;padding:20px;text-align:center;border-radius:14px;
+}
+.fbc-em{font-size:36px}
+.fbc-name{font-size:16px;font-weight:700;color:var(--gold)}
+.fbc-desc{font-size:12px;color:var(--m);line-height:1.6}
+.fbc-price{font-size:20px;font-weight:800;color:var(--red)}
+.fbc-add{
+  background:var(--gold);color:#000;border:none;
+  padding:8px 22px;border-radius:7px;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;margin-top:4px;
+}
+.fbc-add:hover{background:#D4911E;transform:scale(1.04)}
+
+/* Scroll reveal animation */
+.reveal{
+  opacity:0;
+  transform:rotateY(-80deg) scale(.85);
+  transition:all .75s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.vis{opacity:1;transform:rotateY(0deg) scale(1)}
+.reveal.delay1{transition-delay:.1s}
+.reveal.delay2{transition-delay:.2s}
+.reveal.delay3{transition-delay:.3s}
+.reveal.delay4{transition-delay:.4s}
+.reveal.delay5{transition-delay:.5s}
+
+/* Rise reveal */
+.rise{
+  opacity:0;transform:translateY(50px) scale(.95);
+  transition:all .65s cubic-bezier(.25,.46,.45,.94);
+}
+.rise.vis{opacity:1;transform:translateY(0) scale(1)}
+
+/* Tilt reveal */
+.tilt-r{
+  opacity:0;transform:translateX(60px) rotate(4deg);
+  transition:all .7s cubic-bezier(.25,.46,.45,.94);
+}
+.tilt-r.vis{opacity:1;transform:translateX(0) rotate(0deg)}
+.tilt-l{
+  opacity:0;transform:translateX(-60px) rotate(-4deg);
+  transition:all .7s cubic-bezier(.25,.46,.45,.94);
+}
+.tilt-l.vis{opacity:1;transform:translateX(0) rotate(0deg)}
+
+/* ══════════════════════════════════
+   ABOUT
+══════════════════════════════════ */
+.about{background:#420000;border-top:1px solid var(--bor);border-bottom:1px solid var(--bor)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.about-imgwrap{
+  position:relative;border-radius:16px;overflow:hidden;
+  aspect-ratio:4/3;
+  box-shadow:0 0 60px rgba(232,23,27,.15);
+}
+.about-imgwrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.about-imgwrap:hover img{transform:scale(1.04)}
+.about-imgwrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(232,23,27,.15),transparent 60%);
+  pointer-events:none;
+}
+.about-corner{
+  position:absolute;bottom:16px;left:16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  border:1px solid var(--bor);border-radius:10px;padding:10px 16px;
+}
+.ac-num{font-family:'Bebas Neue',cursive;font-size:28px;color:var(--gold);line-height:1}
+.ac-lbl{font-size:11px;color:var(--m)}
+.about-card{
+  background:linear-gradient(135deg,#2D0000,#4A0000);
+  border:1px solid var(--bor);border-top:3px solid var(--red);
+  border-radius:14px;padding:32px;position:relative;overflow:hidden;
+}
+.about-card::before{
+  content:'"';position:absolute;top:-12px;left:12px;
+  font-size:110px;color:var(--red);opacity:.07;
+  font-family:Georgia,serif;line-height:1;pointer-events:none;
+}
+.about-quote{font-size:20px;line-height:1.65;margin-bottom:16px;position:relative}
+.about-quote span{color:var(--gold)}
+.about-small{font-size:13px;color:var(--m);line-height:1.85;position:relative}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.af{
+  background:var(--s2);border:1px solid var(--bor);border-radius:10px;
+  padding:12px;display:flex;gap:10px;align-items:flex-start;transition:border-color .2s;
+}
+.af:hover{border-color:var(--gold)}
+.af-icon{font-size:20px;flex-shrink:0}
+.af-title{font-size:13px;font-weight:700;margin-bottom:2px}
+.af-desc{font-size:11px;color:var(--m);line-height:1.5}
+
+/* ══════════════════════════════════
+   MARQUEE
+══════════════════════════════════ */
+.marquee-section{padding:60px 0;background:#3D0000;overflow:hidden}
+.marquee-header{padding:0 5%;margin-bottom:32px}
+.mwrap{overflow:hidden;position:relative;margin-bottom:14px}
+.mwrap::before,.mwrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+}
+.mwrap::before{left:0;background:linear-gradient(to right,#3D0000,transparent)}
+.mwrap::after{right:0;background:linear-gradient(to left,#3D0000,transparent)}
+.mwrap:hover .mtrack{animation-play-state:paused}
+.mtrack{display:flex;gap:10px;width:max-content}
+.ml{animation:mLeft 38s linear infinite}
+.mr{animation:mRight 32s linear infinite}
+.ml2{animation:mLeft 48s linear infinite}
+@keyframes mLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.mitem{
+  display:flex;align-items:center;gap:8px;
+  background:var(--sur);border:1px solid var(--bor);border-radius:50px;
+  padding:9px 18px;white-space:nowrap;flex-shrink:0;cursor:default;
+  transition:border-color .15s,transform .15s;
+}
+.mitem:hover{border-color:var(--gold);transform:scale(1.02)}
+.mitem.offer{background:rgba(232,23,27,.06);border-color:rgba(232,23,27,.2)}
+.mitem.gold{background:rgba(245,166,35,.06);border-color:rgba(245,166,35,.2)}
+.mi-em{font-size:16px}.mi-name{font-size:13px;font-weight:600}.mi-price{font-size:12px;color:var(--gold);font-weight:700}
+
+/* ══════════════════════════════════
+   COIN GAME
+══════════════════════════════════ */
+.coin-section{
+  background:linear-gradient(135deg,#2D0000,#3D0000,#2D0000);
+  border-top:1px solid var(--bor);border-bottom:1px solid var(--bor);
+  padding:76px 5%;position:relative;overflow:hidden;
+}
+.coin-section::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(ellipse,rgba(245,166,35,.07),transparent 65%);pointer-events:none;
+}
+.coin-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+  max-width:1080px;margin:0 auto;position:relative;
+}
+.crules-box{background:var(--sur);border:1px solid var(--bor);border-radius:12px;padding:20px;margin-top:24px}
+.crule{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--bor);font-size:14px}
+.crule:last-child{border-bottom:none;padding-bottom:0}
+.crule-i{font-size:17px;flex-shrink:0;margin-top:1px}
+.crule-t{color:#ccc;line-height:1.5}
+.crule-t b{color:var(--gold)}
+.coin-game{display:flex;flex-direction:column;align-items:center;gap:22px}
+.coin-scene{width:170px;height:170px;perspective:900px;margin:14px auto;position:relative}
+.coin-ring{position:absolute;border-radius:50%;border:2px solid rgba(245,166,35,.35);animation:rp 2.2s ease-in-out infinite}
+.coin-ring1{inset:-14px;animation-delay:0s}
+.coin-ring2{inset:-26px;border-color:rgba(245,166,35,.15);animation-delay:.6s}
+@keyframes rp{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.06);opacity:.8}}
+.coin3d{
+  width:170px;height:170px;position:relative;
+  transform-style:preserve-3d;
+}
+.cface,.cback{
+  position:absolute;width:100%;height:100%;
+  border-radius:50%;backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  user-select:none;pointer-events:none;
+}
+.cface{
+  background:transparent;
+  border:5px solid #B8860B;
+  box-shadow:inset -8px -8px 20px rgba(0,0,0,.3),inset 5px 5px 12px rgba(255,240,100,.35),0 0 40px rgba(245,166,35,.55),0 0 80px rgba(245,166,35,.2);
+  overflow:hidden;padding:0;
+}
+.cback{
+  background:transparent;
+  border:5px solid #6B8B6B;
+  box-shadow:inset -8px -8px 20px rgba(0,0,0,.3),inset 5px 5px 12px rgba(150,200,150,.2),0 0 30px rgba(100,180,100,.3);
+  transform:rotateY(180deg);
+  overflow:hidden;padding:0;
+}
+
+@keyframes flipH{
+  0%{transform:translateY(0) rotateY(0deg) scaleX(1)}
+  8%{transform:translateY(-55px) rotateY(144deg) scaleX(.08)}
+  28%{transform:translateY(-180px) rotateY(576deg) scaleX(.08)}
+  48%{transform:translateY(-200px) rotateY(1008deg) scaleX(.08)}
+  68%{transform:translateY(-80px) rotateY(1512deg) scaleX(.2)}
+  88%{transform:translateY(-10px) rotateY(1764deg) scaleX(.88)}
+  100%{transform:translateY(0) rotateY(1800deg) scaleX(1)}
+}
+@keyframes flipT{
+  0%{transform:translateY(0) rotateY(0deg) scaleX(1)}
+  8%{transform:translateY(-55px) rotateY(144deg) scaleX(.08)}
+  28%{transform:translateY(-180px) rotateY(576deg) scaleX(.08)}
+  48%{transform:translateY(-200px) rotateY(1008deg) scaleX(.08)}
+  68%{transform:translateY(-80px) rotateY(1512deg) scaleX(.2)}
+  88%{transform:translateY(-10px) rotateY(1944deg) scaleX(.88)}
+  100%{transform:translateY(0) rotateY(1980deg) scaleX(1)}
+}
+@keyframes wobble{
+  0%{transform:rotateY(0) rotateX(0)}
+  20%{transform:rotateY(0) rotateX(12deg) scaleX(.88)}
+  50%{transform:rotateY(0) rotateX(-5deg) scaleX(.97)}
+  100%{transform:rotateY(0) rotateX(0)}
+}
+.guess-row{display:flex;gap:12px}
+.gbtn{
+  padding:11px 26px;border-radius:9px;font-size:15px;font-weight:700;
+  cursor:pointer;border:2px solid transparent;letter-spacing:1px;transition:all .18s;
+}
+.gbtn.heads{background:rgba(245,166,35,.12);border-color:var(--gold);color:var(--gold)}
+.gbtn.heads.sel,.gbtn.heads:hover{background:var(--gold);color:#000}
+.gbtn.tails{background:rgba(232,23,27,.12);border-color:var(--red);color:var(--red)}
+.gbtn.tails.sel,.gbtn.tails:hover{background:var(--red);color:#fff}
+.flip-btn{
+  background:linear-gradient(135deg,var(--gold),#C88A00);
+  color:#000;border:none;padding:16px 48px;border-radius:11px;
+  font-family:'Bebas Neue',cursive;font-size:21px;letter-spacing:3px;
+  cursor:pointer;transition:all .2s;box-shadow:0 4px 22px rgba(245,166,35,.35);
+}
+.flip-btn:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 10px 34px rgba(245,166,35,.55)}
+.flip-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.result-d{font-family:'Bebas Neue',cursive;font-size:28px;letter-spacing:3px;min-height:42px;text-align:center}
+.result-d.win{color:var(--gr)}.result-d.lose{color:var(--red)}.result-d.info{color:var(--gold)}
+.dots-row{display:flex;gap:10px;align-items:center;justify-content:center}
+.sdot{width:15px;height:15px;border-radius:50%;border:2px solid var(--bor);transition:all .3s}
+.sdot.w{background:var(--gr);border-color:var(--gr);box-shadow:0 0 8px rgba(34,197,94,.6)}
+.sdot.l{background:var(--red);border-color:var(--red)}
+.coin-meta{text-align:center;font-size:13px;color:var(--m);line-height:1.8}
+.coin-meta b{color:var(--gold)}.coin-meta .prize{color:var(--gr);font-weight:700;font-size:14px}
+
+/* ══════════════════════════════════
+   FEATURES
+══════════════════════════════════ */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.fcard{
+  background:#520000;border:1px solid var(--bor);border-radius:14px;padding:26px;
+  position:relative;overflow:hidden;transition:all .22s;
+}
+.fcard::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--red);transform:scaleX(0);transition:transform .3s;
+}
+.fcard:hover::after{transform:scaleX(1)}
+.fcard:hover{border-color:rgba(232,23,27,.25);transform:translateY(-4px)}
+.fc-em{font-size:32px;margin-bottom:12px}.fc-t{font-size:16px;font-weight:700;margin-bottom:8px}
+.fc-d{font-size:13px;color:var(--m);line-height:1.75}
+
+/* ══════════════════════════════════
+   SPECIALS
+══════════════════════════════════ */
+.specials{background:#420000;border-top:1px solid var(--bor);border-bottom:1px solid var(--bor)}
+.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.scard{
+  background:#4A0000;border:1px solid var(--bor);border-radius:12px;
+  padding:20px 16px;text-align:center;transition:all .2s;
+}
+.scard:hover{border-color:var(--gold);transform:translateY(-3px)}
+.sc-em{font-size:28px;margin-bottom:9px}.sc-t{font-size:14px;font-weight:700;margin-bottom:5px}
+.sc-d{font-size:12px;color:var(--m);line-height:1.6}
+.sc-tag{
+  display:inline-block;margin-top:9px;
+  background:rgba(245,166,35,.12);color:var(--gold);
+  padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700;
+}
+
+/* ══════════════════════════════════
+   LOCATION
+══════════════════════════════════ */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.loc-card{
+  background:#4A0000;border:1px solid var(--bor);border-radius:11px;
+  padding:20px;display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:12px;transition:border-color .2s;
+}
+.loc-card:hover{border-color:var(--gold)}
+.loc-i{font-size:24px;flex-shrink:0}.loc-lbl{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px}
+.loc-v{font-size:14px;font-weight:600;line-height:1.6}
+.map-mock{
+  background:#420000;border:1px solid var(--bor);border-radius:16px;
+  height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  position:relative;overflow:hidden;
+}
+.map-mock::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(rgba(232,23,27,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(232,23,27,.025) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.map-pin{font-size:42px;position:relative;animation:pinBob 1.6s ease-in-out infinite}
+@keyframes pinBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.map-t{font-weight:700;font-size:15px;position:relative}
+.map-s{font-size:12px;color:var(--m);position:relative}
+.map-link{
+  background:var(--red);color:#fff;border:none;
+  padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;
+  cursor:pointer;position:relative;transition:background .2s;
+}
+.map-link:hover{background:#C0141B}
+.mbadges{display:flex;gap:7px;flex-wrap:wrap}
+.mbg{padding:4px 11px;border-radius:20px;font-size:11px;font-weight:700}
+.mbg.y{background:rgba(234,179,8,.15);color:#EAB308;border:1px solid rgba(234,179,8,.3)}
+.mbg.r{background:rgba(232,23,27,.15);color:var(--red);border:1px solid rgba(232,23,27,.3)}
+.mbg.v{background:rgba(139,92,246,.15);color:#A78BFA;border:1px solid rgba(139,92,246,.3)}
+
+/* ══════════════════════════════════
+   3-STEP ORDER MODAL
+══════════════════════════════════ */
+.order-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.88);z-index:500;
+  align-items:center;justify-content:center;padding:16px;
+}
+.order-overlay.on{display:flex}
+.order-modal{
+  background:#520000;border:1px solid var(--bor);border-radius:16px;
+  width:100%;max-width:840px;max-height:90vh;overflow-y:auto;
+  animation:modalIn .3s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.om-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px;border-bottom:1px solid var(--bor);
+  position:sticky;top:0;background:#520000;z-index:1;
+}
+.om-logo{font-family:'Bebas Neue',cursive;font-size:20px;color:var(--red);letter-spacing:3px}
+.om-logo span{color:var(--gold)}
+.om-close{
+  background:var(--s2);border:1px solid var(--bor);color:var(--w);
+  width:32px;height:32px;border-radius:7px;font-size:18px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;
+}
+.om-close:hover{background:var(--red)}
+
+/* Steps indicator */
+.steps-bar{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;padding:20px 24px;
+}
+.step-item{display:flex;align-items:center;gap:0}
+.step-circle{
+  width:36px;height:36px;border-radius:50%;
+  border:2px solid var(--bor);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:var(--m);transition:all .3s;
+}
+.step-circle.active{border-color:var(--red);background:var(--red);color:#fff}
+.step-circle.done{border-color:var(--gr);background:var(--gr);color:#fff}
+.step-label{font-size:11px;color:var(--m);margin-top:4px;text-align:center;white-space:nowrap}
+.step-line{width:60px;height:2px;background:var(--bor);transition:background .3s}
+.step-line.done{background:var(--gr)}
+.step-wrap{display:flex;flex-direction:column;align-items:center}
+.om-body{padding:20px 24px}
+
+/* Step 1: Menu */
+.om-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.om-cat{
+  padding:5px 14px;border-radius:20px;border:1px solid var(--bor);
+  background:transparent;color:var(--m);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;
+}
+.om-cat.act{border-color:var(--gold);color:var(--gold);background:rgba(245,166,35,.1)}
+.om-items{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-height:340px;overflow-y:auto;padding-right:4px}
+.om-item{
+  background:var(--s2);border:1px solid var(--bor);border-radius:10px;
+  padding:12px;cursor:pointer;transition:border-color .15s;
+}
+.om-item:hover{border-color:var(--gold)}
+.oi-name{font-size:13px;font-weight:600;margin-bottom:3px}
+.oi-desc{font-size:11px;color:var(--m);line-height:1.4;margin-bottom:6px}
+.oi-foot{display:flex;justify-content:space-between;align-items:center}
+.oi-price{font-size:14px;font-weight:700;color:var(--gold)}
+.oi-add{
+  background:var(--red);color:#fff;border:none;
+  padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;transition:all .12s;
+}
+.oi-add:hover{background:#C0141B}
+.oi-qty{display:flex;align-items:center;gap:6px}
+.qb{
+  width:24px;height:24px;border-radius:5px;border:none;
+  background:var(--sur);color:var(--w);font-size:14px;cursor:pointer;transition:background .1s;
+}
+.qb:hover{background:var(--red)}
+.qn{font-weight:700;font-size:13px;min-width:16px;text-align:center}
+
+/* Mini cart bar */
+.cart-bar{
+  background:var(--s2);border-top:1px solid var(--bor);
+  padding:14px 24px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;bottom:0;
+}
+.cb-items{font-size:13px;color:var(--m)}
+.cb-items b{color:var(--w)}
+.cb-total{font-size:15px;font-weight:700;color:var(--gold)}
+.cb-next{
+  background:var(--red);color:#fff;border:none;
+  padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;
+}
+.cb-next:hover{background:#C0141B}
+.cb-next:disabled{opacity:.4;cursor:not-allowed}
+
+/* Step 2: Cart Review */
+.cart-item-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--bor);font-size:13px;
+}
+.cart-item-row:last-child{border-bottom:none}
+.cir-name{flex:1;font-weight:500}
+.cir-price{color:var(--gold);font-weight:700;min-width:64px;text-align:right}
+.bill-sum{background:var(--s2);border-radius:9px;padding:14px;margin-top:14px}
+.bs-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0}
+.bs-divider{border:none;border-top:1px dashed var(--bor);margin:8px 0}
+.bs-total{font-size:17px;font-weight:700;color:var(--gold)}
+.dine-opts{display:flex;gap:10px;margin-top:16px}
+.dine-btn{
+  flex:1;padding:12px;border-radius:9px;border:2px solid var(--bor);
+  background:transparent;color:var(--m);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center;
+}
+.dine-btn.sel{border-color:var(--gold);background:rgba(245,166,35,.1);color:var(--gold)}
+
+/* Step 3: Payment */
+.pay-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.pay-opt{
+  background:var(--s2);border:2px solid var(--bor);border-radius:10px;
+  padding:14px;text-align:center;cursor:pointer;transition:all .2s;
+}
+.pay-opt:hover,.pay-opt.sel{border-color:var(--gold);background:rgba(245,166,35,.08)}
+.pay-em{font-size:28px;margin-bottom:6px}
+.pay-label{font-size:14px;font-weight:600}
+.pay-sub{font-size:11px;color:var(--m);margin-top:2px}
+.inp{
+  background:var(--s2);border:1px solid var(--bor);border-radius:7px;
+  color:var(--w);padding:10px 13px;font-size:13px;outline:none;width:100%;transition:border-color .15s;
+}
+.inp:focus{border-color:var(--gold)}
+.inp-label{font-size:12px;color:var(--m);margin-bottom:5px}
+.mt2{margin-top:8px}.mt3{margin-top:12px}.mt4{margin-top:16px}
+
+/* Step success */
+.success-box{text-align:center;padding:36px 20px}
+.suc-em{font-size:56px;display:block;margin-bottom:14px}
+.suc-title{font-family:'Bebas Neue',cursive;font-size:38px;color:var(--gold);letter-spacing:3px}
+.suc-info{background:var(--s2);border-radius:10px;padding:16px;margin:18px 0}
+.suc-row{display:flex;justify-content:space-between;font-size:14px;padding:4px 0;border-bottom:1px solid var(--bor)}
+.suc-row:last-child{border-bottom:none}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+footer{background:#2D0000;border-top:1px solid var(--bor);padding:48px 5% 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.flogo{font-family:'Bebas Neue',cursive;font-size:24px;color:var(--red);letter-spacing:3px;margin-bottom:10px}
+.flogo span{color:var(--gold)}
+.fdesc{font-size:13px;color:var(--m);line-height:1.85;max-width:230px}
+.socials{display:flex;gap:9px;margin-top:16px}
+.soc{
+  width:34px;height:34px;border-radius:7px;
+  border:1px solid var(--bor);background:var(--sur);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  transition:border-color .2s;cursor:pointer;
+}
+.soc:hover{border-color:var(--gold)}
+.fc-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:14px}
+.fc-links{display:flex;flex-direction:column;gap:9px}
+.fc-links a{font-size:13px;color:var(--m);transition:color .2s}
+.fc-links a:hover{color:var(--w)}
+.footer-bot{
+  border-top:1px solid var(--bor);padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--m);flex-wrap:wrap;gap:10px;
+}
+.footer-bot a{color:var(--gold)}
+
+/* ══════════════════════════════════
+   WIN MODAL
+══════════════════════════════════ */
+.win-ov{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.88);z-index:9999;
+  align-items:center;justify-content:center;
+}
+.win-ov.on{display:flex}
+.win-modal{
+  background:linear-gradient(135deg,#2D0000,#4A0000);
+  border:2px solid var(--gold);border-radius:20px;
+  padding:48px 40px;text-align:center;max-width:440px;width:90%;
+  position:relative;overflow:hidden;
+}
+.win-modal::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.win-em{font-size:54px;display:block;margin-bottom:12px}
+.win-t{font-family:'Bebas Neue',cursive;font-size:46px;color:var(--gold);letter-spacing:4px;text-shadow:0 0 28px var(--gg)}
+.win-rs{font-family:'Bebas Neue',cursive;font-size:72px;color:var(--gr);letter-spacing:2px;line-height:1}
+.win-desc{color:var(--m);font-size:14px;line-height:1.75;margin:12px 0 24px}
+.win-desc b{color:var(--gold)}
+.win-close{
+  background:var(--gold);color:#000;border:none;
+  padding:13px 36px;border-radius:9px;font-size:15px;font-weight:900;cursor:pointer;
+}
+.win-close:hover{background:#D4911E}
+.cpie{position:fixed;border-radius:3px;z-index:10000;animation:cFall linear forwards}
+@keyframes cFall{0%{opacity:1;transform:translateY(-10px) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(760deg)}}
+
+
+/* TLC LOGO */
+.tlc-logo-svg{width:44px;height:44px;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(232,23,27,.3))}
+.pure-veg-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);
+  color:#22C55E;padding:4px 12px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:1px;white-space:nowrap;
+}
+.pure-veg-dot{width:10px;height:10px;border-radius:50%;background:#22C55E;flex-shrink:0}
+
+/* PRE-FLIP MODAL */
+.preflip-ov{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.88);z-index:600;
+  align-items:center;justify-content:center;padding:16px;
+}
+.preflip-ov.on{display:flex}
+.preflip-box{
+  background:#520000;border:1px solid var(--bor);border-radius:18px;
+  width:100%;max-width:420px;overflow:hidden;
+  animation:modalIn .3s ease;
+}
+.pf-header{
+  background:linear-gradient(135deg,#3D0000,#520000);
+  padding:22px 24px;border-bottom:1px solid var(--bor);text-align:center;
+}
+.pf-logo{font-family:'Bebas Neue',cursive;font-size:20px;color:var(--red);letter-spacing:3px}
+.pf-logo span{color:var(--gold)}
+.pf-steps{display:flex;align-items:center;justify-content:center;gap:0;padding:16px 24px;border-bottom:1px solid var(--bor)}
+.pf-step-dot{
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;transition:all .3s;
+  background:var(--bor);color:var(--m);
+}
+.pf-step-dot.act{background:var(--red);color:#fff}
+.pf-step-dot.done{background:var(--gr);color:#fff}
+.pf-line{height:2px;width:40px;background:var(--bor);transition:background .3s}
+.pf-line.done{background:var(--gr)}
+.pf-body{padding:24px}
+.pf-step-title{font-family:'Bebas Neue',cursive;font-size:24px;letter-spacing:2px;color:var(--gold);margin-bottom:6px}
+.pf-step-desc{font-size:13px;color:var(--m);line-height:1.75;margin-bottom:18px}
+.pf-pay-box{
+  background:var(--s2);border:1px solid var(--bor);border-radius:12px;
+  padding:20px;text-align:center;margin-bottom:16px;
+}
+.pf-amount{font-family:'Bebas Neue',cursive;font-size:56px;color:var(--gold);line-height:1}
+.pf-amnt-lbl{font-size:12px;color:var(--m);margin-top:2px}
+.pf-confirm-btn{
+  width:100%;background:var(--gold);color:#000;border:none;
+  padding:14px;border-radius:10px;font-size:15px;font-weight:800;
+  cursor:pointer;transition:all .2s;
+}
+.pf-confirm-btn:hover{background:#D4911E;transform:translateY(-2px)}
+.pf-g-box{
+  background:var(--s2);border:1px solid var(--bor);border-radius:12px;
+  padding:20px;margin-bottom:16px;
+}
+.pf-star-row{display:flex;gap:8px;justify-content:center;margin:12px 0}
+.pf-star{font-size:32px;cursor:pointer;transition:transform .15s;opacity:.3;filter:grayscale(1)}
+.pf-star.lit{opacity:1;filter:grayscale(0);transform:scale(1.1)}
+.pf-star:hover{transform:scale(1.2)}
+.pf-g-open{
+  width:100%;background:#fff;color:#3c4043;border:none;
+  padding:12px;border-radius:8px;font-size:14px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:10px;transition:all .2s;
+}
+.pf-g-open:hover{box-shadow:0 4px 16px rgba(0,0,0,.4);transform:translateY(-1px)}
+.pf-done-btn{
+  width:100%;background:var(--gr);color:#fff;border:none;
+  padding:13px;border-radius:10px;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+}
+.pf-done-btn:hover{background:#16A34A}
+.pf-done-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.pf-cancel{
+  display:block;text-align:center;margin-top:10px;
+  font-size:12px;color:var(--m);cursor:pointer;transition:color .15s;
+}
+.pf-cancel:hover{color:var(--w)}
+
+/* START FLIP BUTTON */
+.start-flip-btn{
+  background:linear-gradient(135deg,var(--gold),#C88A00);
+  color:#000;border:none;padding:16px 48px;border-radius:11px;
+  font-family:'Bebas Neue',cursive;font-size:21px;letter-spacing:3px;
+  cursor:pointer;transition:all .2s;box-shadow:0 4px 22px rgba(245,166,35,.35);
+}
+.start-flip-btn:hover{transform:translateY(-3px);box-shadow:0 10px 34px rgba(245,166,35,.55)}
+
+/* OFFERS — new design */
+.offer-hero{
+  background:linear-gradient(135deg,#2D0000,#3D0000,#2D0000);
+  border:1px solid rgba(34,197,94,.2);border-radius:16px;
+  padding:32px;position:relative;overflow:hidden;margin-bottom:16px;
+}
+.offer-hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,#22C55E,#F5A623,#22C55E,transparent);
+}
+.oh-pct{font-family:'Bebas Neue',cursive;font-size:84px;color:#22C55E;line-height:1;letter-spacing:2px;text-shadow:0 0 30px rgba(34,197,94,.4)}
+.oh-off{font-family:'Bebas Neue',cursive;font-size:42px;color:var(--gold);letter-spacing:4px}
+.oh-title{font-size:22px;font-weight:800;margin-bottom:6px}
+.oh-desc{font-size:13px;color:var(--m);line-height:1.8}
+.oh-badge{
+  position:absolute;top:20px;right:20px;
+  background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);
+  color:#22C55E;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;
+}
+.oh-seasons{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.oh-season{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.05);border:1px solid var(--bor);
+  border-radius:8px;padding:8px 16px;font-size:13px;
+}
+
+/* Student Card */
+.student-card{
+  background:#4A0000;border:1px solid var(--bor);border-radius:14px;
+  padding:28px;position:relative;overflow:hidden;
+}
+.student-card::after{
+  content:'🎓';position:absolute;right:-10px;bottom:-10px;
+  font-size:90px;opacity:.06;
+}
+.sc-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sc-icon{
+  width:48px;height:48px;border-radius:10px;
+  background:linear-gradient(135deg,var(--bl),#1D4ED8);
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+}
+.sc-title{font-size:18px;font-weight:800}
+.sc-sub{font-size:12px;color:var(--m)}
+.sc-input-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:10px}
+.sc-verify-btn{
+  background:var(--bl);color:#fff;border:none;
+  padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.sc-verify-btn:hover{background:#1D4ED8}
+.sc-result{
+  border-radius:8px;padding:12px 16px;font-size:13px;
+  margin-top:8px;display:none;
+}
+.sc-result.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22C55E}
+.sc-result.err{background:rgba(232,23,27,.1);border:1px solid rgba(232,23,27,.25);color:var(--red)}
+/* ══════════════════════════════════
+   LOVE / FAVOURITE BUTTON
+══════════════════════════════════ */
+.love-btn{background:none;border:none;cursor:pointer;font-size:22px;transition:transform .2s;line-height:1;padding:4px}
+.love-btn:hover{transform:scale(1.25)}
+.love-btn.loved{animation:lovePop .3s ease}
+@keyframes lovePop{0%{transform:scale(1)}50%{transform:scale(1.45)}100%{transform:scale(1)}}
+.love-count{position:absolute;top:10px;left:10px;background:rgba(232,23,27,.85);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;display:flex;align-items:center;gap:4px}
+
+/* ══════════════════════════════════
+   GOOGLE REVIEW BADGE
+══════════════════════════════════ */
+.g-review-strip{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.2);border:1px solid var(--bor);border-radius:10px;padding:12px 16px;margin-top:14px}
+.g-logo-mini{font-weight:900;font-size:15px;letter-spacing:-1px}
+.g-logo-mini .ga{color:#4285F4}.g-logo-mini .gb{color:#EA4335}.g-logo-mini .gc{color:#FBBC05}.g-logo-mini .gd{color:#4285F4}.g-logo-mini .ge{color:#34A853}.g-logo-mini .gf{color:#EA4335}
+.g-review-info{flex:1}
+.g-stars{color:#FBBC05;font-size:13px;letter-spacing:1px}
+.g-count{font-size:12px;color:var(--m);margin-top:1px}
+.g-review-btn{background:#4285F4;color:#fff;border:none;padding:7px 16px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;transition:background .15s;white-space:nowrap}
+.g-review-btn:hover{background:#3367d6}
+.win-g-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#3c4043;border:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin:10px auto 0;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.win-g-btn:hover{box-shadow:0 4px 16px rgba(0,0,0,.4);transform:translateY(-1px)}
+
+/* ══════════════════════════════════
+   REVIEWS & RATINGS SECTION
+══════════════════════════════════ */
+.reviews-sec{background:#420000;border-top:1px solid var(--bor);border-bottom:1px solid var(--bor)}
+.reviews-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;margin-top:36px;align-items:start}
+.star-row{display:flex;gap:6px;margin-bottom:8px}
+.star{font-size:26px;cursor:pointer;transition:transform .15s;filter:grayscale(1);opacity:.4}
+.star:hover,.star.on{filter:grayscale(0);opacity:1;transform:scale(1.15)}
+.review-form{background:#4A0000;border:1px solid var(--bor);border-radius:14px;padding:24px}
+.rf-title{font-size:16px;font-weight:700;color:var(--gold);margin-bottom:18px}
+.rf-label{font-size:12px;color:var(--m);margin-bottom:5px}
+.rf-input{background:var(--sur);border:1px solid var(--bor);border-radius:7px;color:var(--w);padding:10px 13px;font-size:13px;outline:none;width:100%;transition:border-color .15s;font-family:'Inter',sans-serif}
+.rf-input:focus{border-color:var(--gold)}
+.rf-textarea{resize:vertical;min-height:80px}
+.rf-submit{background:var(--red);color:#fff;border:none;padding:11px 28px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:14px;width:100%}
+.rf-submit:hover{background:#C0141B}
+.review-cards{display:flex;flex-direction:column;gap:14px;max-height:500px;overflow-y:auto;padding-right:4px}
+.rcard{background:var(--s2);border:1px solid var(--bor);border-radius:12px;padding:18px;transition:border-color .2s}
+.rcard:hover{border-color:rgba(245,166,35,.3)}
+.rcard-top{display:flex;align-items:center;margin-bottom:10px;gap:10px}
+.rcard-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--gold));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#000;flex-shrink:0}
+.rcard-name{font-size:14px;font-weight:700}
+.rcard-date{font-size:11px;color:var(--m);margin-left:auto}
+.rcard-stars{color:#FBBC05;font-size:14px;letter-spacing:1px;margin-bottom:7px}
+.rcard-text{font-size:13px;color:#ccc;line-height:1.7}
+.rcard-badge{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;background:rgba(34,197,94,.12);color:var(--gr);border:1px solid rgba(34,197,94,.25)}
+.overall-rating{background:linear-gradient(135deg,#2D0000,#4A0000);border:1px solid var(--bor);border-radius:14px;padding:28px;text-align:center;margin-bottom:16px}
+.or-num{font-family:'Bebas Neue',cursive;font-size:72px;color:var(--gold);line-height:1;letter-spacing:2px}
+.or-stars{color:#FBBC05;font-size:20px;letter-spacing:3px;margin:4px 0}
+.or-count{font-size:13px;color:var(--m)}
+.or-bars{margin-top:16px;display:flex;flex-direction:column;gap:7px}
+.or-bar-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.or-bar-lbl{color:var(--m);min-width:36px;text-align:right}
+.or-bar-track{flex:1;height:7px;background:var(--bor);border-radius:4px;overflow:hidden}
+.or-bar-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .6s ease}
+.or-bar-pct{color:var(--m);min-width:30px}
+
+/* ══════════════════════════════════
+   TOAST
+══════════════════════════════════ */
+.toast-c{position:fixed;top:70px;right:16px;z-index:800;display:flex;flex-direction:column;gap:7px}
+.toast{
+  background:var(--s2);border:1px solid var(--bor);
+  border-left:3px solid var(--gr);border-radius:8px;
+  padding:10px 16px;font-size:13px;min-width:200px;
+  animation:toastIn .2s ease;
+}
+.toast.err{border-left-color:var(--red)}
+@keyframes toastIn{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media(max-width:960px){
+  .about-grid,.coin-inner,.loc-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .spec-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .om-items{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .gallery-grid,.feat-grid,.about-features{grid-template-columns:1fr}
+  .spec-grid,.pay-opts{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .om-items{grid-template-columns:1fr}
+  .hstat{padding:0 12px}
+  .login-box{padding:32px 24px}
+}
+
+/* ══════════════════════════════════
+   HAMBURGER MENU
+══════════════════════════════════ */
+.hbg-btn{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;
+  background:var(--s2);border:1px solid var(--bor);border-radius:8px;
+  cursor:pointer;transition:all .2s;flex-shrink:0;
+  padding:8px;
+}
+.hbg-btn:hover{border-color:var(--gold);background:rgba(245,166,35,.08)}
+.hbg-line{
+  width:20px;height:2px;background:var(--w);border-radius:2px;
+  transition:all .35s cubic-bezier(.25,.46,.45,.94);transform-origin:center;
+}
+.hbg-btn.open .hbg-line:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--red)}
+.hbg-btn.open .hbg-line:nth-child(2){opacity:0;transform:scaleX(0)}
+.hbg-btn.open .hbg-line:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--red)}
+.hbg-btn.open{border-color:var(--red);background:rgba(232,23,27,.08)}
+
+/* Full screen menu overlay */
+.hmenu-overlay{
+  position:fixed;inset:0;z-index:998;
+  background:rgba(0,0,0,0);
+  pointer-events:none;
+  transition:background .35s ease;
+}
+.hmenu-overlay.open{
+  background:rgba(0,0,0,.7);
+  pointer-events:all;
+  backdrop-filter:blur(4px);
+}
+
+/* Menu panel (slides from right) */
+.hmenu-panel{
+  position:fixed;top:0;right:0;bottom:0;
+  width:min(380px, 90vw);
+  background:#C0141B;
+  border-left:3px solid #F5A623;
+  z-index:999;
+  transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.25,.46,.45,.94);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  box-shadow:-8px 0 40px rgba(0,0,0,.5);
+}
+.hmenu-panel.open{transform:translateX(0)}
+
+/* Panel header — deep red + gold border */
+.hmp-header{
+  padding:20px 24px;
+  border-bottom:2px solid rgba(245,166,35,.5);
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(135deg,#8B0000,#C0141B);
+  flex-shrink:0;
+}
+.hmp-logo{
+  font-family:'Bebas Neue',cursive;font-size:20px;
+  color:#FFD700;letter-spacing:3px;
+  text-shadow:0 0 12px rgba(255,215,0,.4);
+}
+.hmp-logo span{color:#fff}
+.hmp-close{
+  width:34px;height:34px;border-radius:7px;
+  border:1px solid rgba(255,215,0,.4);
+  background:rgba(0,0,0,.25);color:#FFD700;font-size:17px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .15s;
+}
+.hmp-close:hover{background:rgba(0,0,0,.5);border-color:#FFD700}
+
+/* Nav items */
+.hmp-nav{flex:1;overflow-y:auto;padding:8px 0;scrollbar-width:thin;scrollbar-color:rgba(255,215,0,.3) transparent}
+.hmp-nav::-webkit-scrollbar{width:3px}
+.hmp-nav::-webkit-scrollbar-thumb{background:rgba(255,215,0,.3);border-radius:2px}
+
+.hmp-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 22px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:all .18s;position:relative;
+  text-decoration:none;color:#fff;
+}
+.hmp-item::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:#FFD700;transform:scaleY(0);transition:transform .22s;
+  transform-origin:center;
+}
+.hmp-item:hover{
+  background:rgba(0,0,0,.22);
+  padding-left:30px;
+}
+.hmp-item:hover::before{transform:scaleY(1)}
+.hmp-item:hover .hmi-icon{transform:scale(1.25) rotate(-8deg)}
+.hmp-item:hover .hmi-title{color:#FFD700}
+.hmp-item:hover .hmi-arrow{color:#FFD700;transform:translateX(3px)}
+
+.hmi-icon{
+  font-size:22px;width:36px;text-align:center;
+  transition:transform .2s;flex-shrink:0;
+  background:rgba(0,0,0,.2);border-radius:8px;
+  padding:4px 0;
+}
+.hmi-content{flex:1}
+.hmi-title{font-size:15px;font-weight:700;margin-bottom:2px;color:#fff;transition:color .18s}
+.hmi-desc{font-size:11px;color:rgba(255,255,255,.55)}
+.hmi-arrow{color:rgba(255,255,255,.3);font-size:16px;transition:all .18s}
+
+/* Section divider */
+.hmp-divider{
+  padding:12px 22px 6px;
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:#FFD700;
+  border-top:1px solid rgba(255,215,0,.15);
+  margin-top:4px;
+}
+
+/* Order button inside menu */
+.hmp-order-btn{
+  margin:0 14px 10px;
+  background:linear-gradient(135deg,#FFD700,#F5A623);
+  color:#000;border:none;border-radius:10px;
+  padding:15px;font-size:15px;font-weight:800;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);
+  letter-spacing:0.5px;
+}
+.hmp-order-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.4)}
+
+/* Lucky btn */
+.hmp-lucky-btn{
+  margin:0 14px 10px;
+  background:rgba(0,0,0,.3);
+  color:#FFD700;border:1.5px solid #FFD700;border-radius:10px;
+  padding:13px;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.hmp-lucky-btn:hover{background:rgba(0,0,0,.5);box-shadow:0 0 16px rgba(255,215,0,.3)}
+
+/* User info */
+.hmp-user{
+  margin:10px 14px;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,215,0,.25);
+  border-radius:10px;
+  padding:12px;display:flex;align-items:center;gap:12px;
+  flex-shrink:0;
+}
+.hmp-av{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,#FFD700,#F5A623);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:#000;
+  flex-shrink:0;border:2px solid rgba(255,255,255,.2);
+}
+.hmp-uname{font-size:14px;font-weight:700;color:#fff}
+.hmp-urole{font-size:11px;color:rgba(255,255,255,.55)}
+
+/* Socials row */
+.hmp-socials{
+  display:flex;gap:8px;padding:10px 14px 14px;
+  border-top:1px solid rgba(255,215,0,.2);flex-shrink:0;
+}
+.hmp-soc{
+  flex:1;height:36px;border-radius:8px;
+  border:1px solid rgba(255,215,0,.3);
+  background:rgba(0,0,0,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;cursor:pointer;transition:all .15s;
+}
+.hmp-soc:hover{background:rgba(0,0,0,.4);border-color:#FFD700}
+
+/* Slide in animation */
+.hmenu-panel.open .hmp-item{animation:menuItemIn .3s ease both}
+.hmenu-panel.open .hmp-item:nth-child(1){animation-delay:.04s}
+.hmenu-panel.open .hmp-item:nth-child(2){animation-delay:.08s}
+.hmenu-panel.open .hmp-item:nth-child(3){animation-delay:.12s}
+.hmenu-panel.open .hmp-item:nth-child(4){animation-delay:.16s}
+.hmenu-panel.open .hmp-item:nth-child(5){animation-delay:.20s}
+.hmenu-panel.open .hmp-item:nth-child(6){animation-delay:.24s}
+.hmenu-panel.open .hmp-item:nth-child(7){animation-delay:.28s}
+.hmenu-panel.open .hmp-item:nth-child(8){animation-delay:.32s}
+.hmenu-panel.open .hmp-item:nth-child(9){animation-delay:.36s}
+.hmenu-panel.open .hmp-item:nth-child(10){animation-delay:.40s}
+@keyframes menuItemIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-bg-pattern"></div>
+
+  <div class="login-wrap">
+
+    <!-- LEFT: Brand Panel -->
+    <div class="login-left">
+      <div class="ll-coin">🪙</div>
+      <div class="ll-logo">
+        <span class="ll-the">THE</span>
+        <span class="ll-main">THIRD LEVEL</span>
+        <span class="ll-cafe">CAFÉ</span>
+      </div>
+      <div class="ll-tagline">
+        "Where every craving finds its level" — A hidden café inside Kashmiri Gate Metro, Delhi.
+      </div>
+      <div class="ll-badge">🌿 100% Pure Vegetarian</div>
+      <div class="ll-features">
+        <div class="ll-feat"><div class="ll-feat-icon">🍽️</div><div>150+ freshly prepared dishes every day</div></div>
+        <div class="ll-feat"><div class="ll-feat-icon">🪙</div><div>Flip a coin and win a ₹500 FREE meal</div></div>
+        <div class="ll-feat"><div class="ll-feat-icon">🌧️</div><div>Monsoon & Winter Sale — Flat 25% OFF</div></div>
+        <div class="ll-feat"><div class="ll-feat-icon">🎓</div><div>Exclusive 10% student discount</div></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Sign In Form -->
+    <div class="login-right">
+      <div class="lr-tag">📍 Kashmiri Gate Metro · Delhi</div>
+      <div class="lr-title">Welcome Back</div>
+      <div class="lr-sub">Sign in to place your order, track your favourites, and unlock exclusive offers.</div>
+
+      <!-- Google Sign In -->
+      <button class="google-btn" onclick="googleLogin()">
+        <div class="g-logo">
+          <span class="g1">G</span><span class="g2">o</span><span class="g3">o</span>
+          <span class="g4">g</span><span class="g5">l</span><span class="g6">e</span>
+        </div>
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="divider">or</div>
+
+      <!-- Phone Sign In -->
+      <button class="phone-btn" onclick="phoneLogin()">
+        📱 Continue with Phone Number
+      </button>
+
+      <!-- Guest -->
+      <div class="guest-link" onclick="guestLogin()">
+        Continue as Guest — Sign in later to place an order
+      </div>
+
+      <!-- Promo Badge -->
+      <div class="login-badge">
+        🪙 <b>Try Your Luck</b> — Sign in and play our exclusive Coin Flip game.<br>
+        Guess correctly and win <b>any meal up to ₹500 — completely FREE!</b>
+      </div>
+
+      <div class="lr-terms">
+        By signing in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PHONE LOGIN PANEL
+══════════════════════════════════ -->
+<div id="phonePanel" style="display:none;position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:20px">
+  <div style="background:#520000;border:1px solid #3A0A0A;border-top:3px solid var(--red);border-radius:16px;padding:40px 36px;width:100%;max-width:400px;text-align:center;box-shadow:0 0 60px rgba(232,23,27,.2)">
+
+    <!-- Logo -->
+    <div style="font-family:'Bebas Neue',cursive;font-size:13px;color:var(--gold);letter-spacing:4px;margin-bottom:6px">THE THIRD LEVEL CAFÉ</div>
+
+    <!-- Step 1: Phone Number -->
+    <div id="phoneStep1">
+      <div style="font-size:24px;margin-bottom:16px">📱</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px">Enter Your Phone Number</div>
+      <div style="font-size:13px;color:#666;margin-bottom:24px;line-height:1.6">We'll send a one-time password to verify your identity.</div>
+      <div style="text-align:left;font-size:12px;color:#666;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Mobile Number</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+        <div style="background:#3D0000;border:1px solid #8B1010;border-radius:8px;padding:10px 12px;font-size:13px;color:#aaa;white-space:nowrap">🇮🇳 +91</div>
+        <input class="inp" id="phoneInp" type="tel" maxlength="10" placeholder="10-digit mobile number" style="background:#3D0000;border-color:#8B1010">
+      </div>
+      <button class="btn-r" style="width:100%;font-size:14px;padding:14px;border-radius:9px" onclick="sendOTP()">
+        Send OTP →
+      </button>
+    </div>
+
+    <!-- Step 2: OTP Verification -->
+    <div id="phoneStep2" style="display:none">
+      <div style="font-size:24px;margin-bottom:16px">🔐</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px">Verify OTP</div>
+      <div style="font-size:13px;color:#666;margin-bottom:24px;line-height:1.6">
+        A 6-digit OTP has been sent to your registered number. Please enter it below.
+      </div>
+      <div style="text-align:left;font-size:12px;color:#666;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">One-Time Password</div>
+      <input class="inp" id="otpInp" type="tel" maxlength="6" placeholder="Enter 6-digit OTP"
+        style="margin-bottom:16px;text-align:center;font-size:20px;letter-spacing:6px;background:#3D0000;border-color:#8B1010">
+      <button class="btn-r" style="width:100%;font-size:14px;padding:14px;border-radius:9px" onclick="verifyOTP()">
+        Verify & Sign In ✓
+      </button>
+      <div style="margin-top:12px;font-size:12px;color:#555">
+        Didn't receive the OTP? <span style="color:var(--gold);cursor:pointer" onclick="document.getElementById('phoneStep1').style.display='block';document.getElementById('phoneStep2').style.display='none'">Resend</span>
+      </div>
+    </div>
+
+    <button style="background:none;border:none;color:#555;font-size:13px;cursor:pointer;margin-top:20px;display:block;width:100%" onclick="closePhone()">
+      ← Back to Sign In
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     MAIN SITE
+══════════════════════════════════ -->
+<div id="mainSite">
+
+<!-- RIBBON -->
+<div class="ribbon">
+  🌿 100% Pure Vegetarian · <span onclick="sTo('specials')">🌧️ Monsoon Sale — Flat 25% OFF!</span> · 🪙 <span onclick="sTo('coin-game')">Flip & Win ₹500 FREE Meal →</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex;align-items:center;gap:10px">
+    <svg class="tlc-logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="38" fill="#0A0A0A" stroke="#C8A04A" stroke-width="2.5"/>
+      <circle cx="40" cy="40" r="34" fill="none" stroke="#5A4010" stroke-width="0.8"/>
+      <text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#F5A623" letter-spacing="1.5">THE</text>
+      <text x="40" y="31" text-anchor="middle" font-family="Impact,Arial Black,sans-serif" font-size="13" fill="#E8171B" font-weight="900" letter-spacing="0.5">THIRD</text>
+      <text x="40" y="44" text-anchor="middle" font-family="Impact,Arial Black,sans-serif" font-size="13" fill="#E8171B" font-weight="900" letter-spacing="0.5">LEVEL</text>
+      <text x="40" y="57" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#F5A623" letter-spacing="2">CAFÉ</text>
+      <text x="40" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#888" letter-spacing="1">KASHMIRI GATE · DELHI</text>
+    </svg>
+    <div>
+      <div class="nav-logo">THE <span>THIRD LEVEL</span> CAFÉ</div>
+      <div class="pure-veg-badge" style="margin-top:2px"><div class="pure-veg-dot"></div>100% Pure Vegetarian</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#menu-section">Menu</a></li>
+    <li><a href="#coin-game">Try Luck 🪙</a></li>
+    <li><a href="#reviews">Reviews ⭐</a></li><li><a href="#location">Find Us</a></li>
+  </ul>
+  <button class="hbg-btn" id="hbgBtn" onclick="toggleHMenu()" aria-label="Menu">
+    <div class="hbg-line"></div>
+    <div class="hbg-line"></div>
+    <div class="hbg-line"></div>
+  </button>
+  <div class="nav-right">
+    <div class="nav-user" id="navUser">
+      <div class="nav-avatar" id="navAv">?</div>
+      <span id="navName">Guest</span>
+    </div>
+    <button class="nav-cta" onclick="openOrder()">🍽️ Order Now</button>
+  </div>
+</nav>
+
+<!-- ══ HAMBURGER MENU PANEL ══ -->
+<div class="hmenu-overlay" id="hmenuOverlay" onclick="closeHMenu()"></div>
+<div class="hmenu-panel" id="hmenuPanel">
+
+  <!-- Header -->
+  <div class="hmp-header">
+    <div class="hmp-logo">THE <span>THIRD LEVEL</span> CAFÉ</div>
+    <button class="hmp-close" onclick="closeHMenu()">✕</button>
+  </div>
+
+  <!-- User Info -->
+  <div class="hmp-user">
+    <div class="hmp-av" id="hmpAv">?</div>
+    <div>
+      <div class="hmp-uname" id="hmpName">Guest User</div>
+      <div class="hmp-urole">📍 Kashmiri Gate Metro, Delhi</div>
+    </div>
+  </div>
+
+  <!-- Nav Items -->
+  <div class="hmp-nav" id="hmpNav">
+    <div class="hmp-divider">Navigation</div>
+
+    <a class="hmp-item" onclick="hNavTo('home')">
+      <div class="hmi-icon">🏠</div>
+      <div class="hmi-content"><div class="hmi-title">Home</div><div class="hmi-desc">Café ki pehli jhalak</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="hNavTo('about')">
+      <div class="hmi-icon">☕</div>
+      <div class="hmi-content"><div class="hmi-title">About Us</div><div class="hmi-desc">Hamari kahaani, hamara vibe</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="hNavTo('gallery')">
+      <div class="hmi-icon">🖼️</div>
+      <div class="hmi-content"><div class="hmi-title">Food Gallery</div><div class="hmi-desc">Dishes dekho, muh mein paani aao</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="hNavTo('menu-section')">
+      <div class="hmi-icon">🍽️</div>
+      <div class="hmi-content"><div class="hmi-title">Our Menu</div><div class="hmi-desc">150+ freshly prepared dishes — available every day</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <div class="hmp-divider">Experiences</div>
+
+    <a class="hmp-item" onclick="hNavTo('coin-game')">
+      <div class="hmi-icon">🪙</div>
+      <div class="hmi-content"><div class="hmi-title">Try Your Luck!</div><div class="hmi-desc">Flip a coin and win a ₹500 FREE meal</div></div>
+      <div class="hmi-arrow" style="color:var(--gold)">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="hNavTo('features')">
+      <div class="hmi-icon">⭐</div>
+      <div class="hmi-content"><div class="hmi-title">Why Choose Us</div><div class="hmi-desc">Delhi ka best metro café kyun hai</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="hNavTo('specials')">
+      <div class="hmi-icon">🎁</div>
+      <div class="hmi-content"><div class="hmi-title">Offers & Deals</div><div class="hmi-desc">Birthday treat, happy hours, group deals</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="hNavTo('reviews')">
+      <div class="hmi-icon">💬</div>
+      <div class="hmi-content"><div class="hmi-title">Reviews</div><div class="hmi-desc">4.8 ⭐ · 847 Google reviews</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="hNavTo('location')">
+      <div class="hmi-icon">📍</div>
+      <div class="hmi-content"><div class="hmi-title">Find Us</div><div class="hmi-desc">Kashmiri Gate Metro Station, Delhi</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+    <a class="hmp-item" onclick="openGoogleReview();closeHMenu()">
+      <div class="hmi-icon">🌟</div>
+      <div class="hmi-content"><div class="hmi-title">Leave Google Review</div><div class="hmi-desc">Share your dining experience with us</div></div>
+      <div class="hmi-arrow">›</div>
+    </a>
+
+  </div><!-- end hmp-nav -->
+
+  <!-- Bottom CTA Buttons -->
+  <button class="hmp-order-btn" onclick="openOrder();closeHMenu()">
+    🍽️ Order Now — Quick & Easy
+  </button>
+  <button class="hmp-lucky-btn" onclick="hNavTo('coin-game');closeHMenu()">
+    🪙 Try Your Luck — Win ₹500 FREE Meal!
+  </button>
+
+  <!-- Socials -->
+  <div class="hmp-socials">
+    <div class="hmp-soc" title="Instagram">📸</div>
+    <div class="hmp-soc" title="Facebook">👍</div>
+    <div class="hmp-soc" title="WhatsApp">💬</div>
+    <div class="hmp-soc" title="Google">⭐</div>
+  </div>
+
+</div><!-- end hmenu-panel -->
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="fbg" style="left:4%;animation-duration:14s;animation-delay:0s">🪙</div>
+  <div class="fbg" style="left:15%;animation-duration:18s;animation-delay:2s">☕</div>
+  <div class="fbg" style="left:28%;animation-duration:12s;animation-delay:5s">🪙</div>
+  <div class="fbg" style="left:52%;animation-duration:16s;animation-delay:1s">✨</div>
+  <div class="fbg" style="left:70%;animation-duration:11s;animation-delay:3s">🪙</div>
+  <div class="fbg" style="left:85%;animation-duration:19s;animation-delay:7s">☕</div>
+  <div class="fbg" style="left:92%;animation-duration:13s;animation-delay:4s">🍔</div>
+
+  <div class="hero-badge">📍 Concourse Level · Kashmiri Gate Metro · Delhi</div>
+  <div class="hero-title">
+    <span class="h-the">the</span>
+    <span class="h-main">THIRD LEVEL</span>
+    <span class="h-cafe">café</span>
+  </div>
+  <p class="hero-tagline">
+    <i style="color:var(--gold);font-style:italic">"Where every craving finds its level"</i><br>
+    Somewhere between the rush of the metro and the noise of the city exists a quieter place — a third level, hidden in plain sight. A café where time slows, conversations linger, and great food finds you.
+    <b>Flip a coin and win a ₹500 FREE meal</b> — only at The Third Level Café!
+  </p>
+  <div class="hbtns">
+    <button class="btn-r" onclick="openOrder()">🍽️ Order Now</button>
+    <button class="btn-g" onclick="sTo('coin-game')">🪙 Try Your Luck</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="snum">150+</div><div class="slbl">Menu Items</div></div>
+    <div class="hstat"><div class="snum">4.8 ⭐</div><div class="slbl">Google Rating</div></div>
+    <div class="hstat"><div class="snum">25%</div><div class="slbl">Monsoon Sale</div></div>
+    <div class="hstat"><div class="snum">₹500</div><div class="slbl">Lucky Prize</div></div>
+  </div>
+  <div class="hero-scroll">SCROLL DOWN ↓</div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="about-grid">
+    <div class="tilt-l">
+      <div class="about-imgwrap">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700&h=500&fit=crop&auto=format" alt="Café Interior" loading="lazy">
+        <div class="about-corner">
+          <div class="ac-num">4.8 ⭐</div>
+          <div class="ac-lbl">Google Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="tilt-r">
+      <div class="tag">Our Story</div>
+      <h2 class="sec-title">FOOD THAT HITS <span>DIFFERENT</span></h2>
+      <div class="about-card">
+        <div class="about-quote">"Where every craving finds its <span>level</span> — somewhere between the rush of the metro and the noise of the city, there exists a quieter place."</div>
+        <div class="about-small">Nestled inside Kashmiri Gate Metro Station — Delhi's largest transit interchange — The Third Level Café draws inspiration from Jack Finney's timeless tale of a hidden world. Entirely plant-based, 150+ thoughtfully crafted dishes, and home to Delhi's most exciting dining game: flip a coin and win a ₹500 FREE meal.</div>
+      </div>
+      <div class="about-features">
+        <div class="af"><div class="af-icon">🏙️</div><div><div class="af-title">Prime Metro Location</div><div class="af-desc">Concourse Level, Kashmiri Gate — Delhi's largest transit interchange</div></div></div>
+        <div class="af"><div class="af-icon">🌿</div><div><div class="af-title">100% Pure Vegetarian</div><div class="af-desc">150+ plant-based dishes, freshly prepared every day</div></div></div>
+        <div class="af"><div class="af-icon">🎨</div><div><div class="af-title">Distinctive Interiors</div><div class="af-desc">Retro murals, warm neon lighting — Instagram-worthy spaces</div></div></div>
+        <div class="af"><div class="af-icon">🪙</div><div><div class="af-title">Win a ₹500 FREE Meal</div><div class="af-desc">Delhi's one and only coin flip dining experience!</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE GALLERY -->
+<section class="section gallery-section" id="gallery">
+  <div class="tc">
+    <div class="tag">Gallery</div>
+    <h2 class="sec-title">OUR <span>FOOD</span> GALLERY</h2>
+    <p class="sec-desc" style="margin:0 auto">Hover to reveal details · All dishes freshly prepared daily</p>
+  </div>
+  <div class="gallery-grid" style="margin-top:36px" id="galleryGrid"></div>
+</section>
+
+<!-- MARQUEE MENU -->
+<section class="marquee-section" id="menu-section">
+  <div class="marquee-header">
+    <div class="tag">Our Menu</div>
+    <h2 class="sec-title">EXPLORE <span>50+</span> DISHES</h2>
+    <p style="color:var(--m);font-size:13px;margin-top:4px">🖱️ Hover to pause · Items freshly prepared daily</p>
+  </div>
+  <div class="mwrap" style="margin-bottom:14px"><div class="mtrack ml" id="t1"></div></div>
+  <div class="mwrap" style="margin-bottom:14px"><div class="mtrack mr" id="t2"></div></div>
+  <div class="mwrap"><div class="mtrack ml2" id="t3"></div></div>
+  <div style="text-align:center;margin-top:32px">
+    <button class="btn-r" onclick="openOrder()" style="font-size:14px;padding:12px 34px">🛒 Order Now →</button>
+  </div>
+</section>
+
+<!-- COIN GAME -->
+<section class="coin-section" id="coin-game">
+  <div class="coin-inner">
+    <div class="rise">
+      <div class="tag">🎮 Try Your Luck</div>
+      <h2 class="sec-title">FLIP THE <span>COIN</span></h2>
+      <p class="sec-desc">Delhi's most thrilling dining experience! Choose <b>Heads or Tails</b> — call it right and enjoy <b style="color:var(--gold)">any meal up to ₹500, absolutely FREE.</b> Pay ₹50, leave a Google review, and flip your way to a free meal!</p>
+      <div class="crules-box">
+        <div class="crule"><div class="crule-i">1️⃣</div><div class="crule-t"><b>Choose Heads or Tails</b> — trust your instincts!</div></div>
+        <div class="crule"><div class="crule-i">2️⃣</div><div class="crule-t">Participation fee: <b>₹25 per flip</b> — sirf café counter pe</div></div>
+        <div class="crule"><div class="crule-i">🏆</div><div class="crule-t">Sahi guess = <b>₹500 tak FREE meal!</b></div></div>
+        <div class="crule"><div class="crule-i">⭐</div><div class="crule-t">Winner ko ek <b>Google Review deni hogi</b></div></div>
+      </div>
+      <div class="g-review-strip">
+        <div class="g-logo-mini"><span class="ga">G</span><span class="gb">o</span><span class="gc">o</span><span class="gd">g</span><span class="ge">l</span><span class="gf">e</span></div>
+        <div class="g-review-info">
+          <div class="g-stars">★★★★★</div>
+          <div class="g-count">4.8 · 1,200+ Reviews on Google Maps</div>
+        </div>
+        <button class="g-review-btn" onclick="openGoogleReview()">⭐ Review Us</button>
+      </div>
+    </div>
+    <div class="coin-game">
+      <div style="text-align:center">
+        <div style="font-size:11px;color:var(--m);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Apni Choice Select Karo</div>
+        <div class="guess-row">
+          <button class="gbtn heads" id="hBtn" onclick="pick('heads')">👑 HEADS</button>
+          <button class="gbtn tails" id="tBtn" onclick="pick('tails')">₹ TAILS</button>
+        </div>
+      </div>
+      <div style="position:relative;display:inline-block">
+        <div class="coin-ring coin-ring1"></div>
+        <div class="coin-ring coin-ring2"></div>
+        <div class="coin-scene">
+          <div class="coin3d" id="coin3d">
+            <div class="cface">
+              <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+                <defs>
+                  <radialGradient id="goldBg" cx="38%" cy="28%" r="72%">
+                    <stop offset="0%" stop-color="#FFF5B0"/>
+                    <stop offset="25%" stop-color="#FFD700"/>
+                    <stop offset="60%" stop-color="#C8920A"/>
+                    <stop offset="85%" stop-color="#A07800"/>
+                    <stop offset="100%" stop-color="#7A5500"/>
+                  </radialGradient>
+                  <radialGradient id="goldShine" cx="30%" cy="22%" r="55%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
+                    <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                  </radialGradient>
+                </defs>
+
+                <!-- Main gold face -->
+                <circle cx="80" cy="80" r="80" fill="url(#goldBg)"/>
+                <circle cx="80" cy="80" r="80" fill="url(#goldShine)"/>
+
+                <!-- Outer dotted diamond border -->
+                <circle cx="80" cy="80" r="74" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="1.2" stroke-dasharray="3,4.5"/>
+
+                <!-- Inner engraved ring -->
+                <circle cx="80" cy="80" r="68" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+
+                <!-- Top arc highlight -->
+                <path d="M 22 80 A 58 58 0 0 1 138 80" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+
+                <!-- रुपया text at top -->
+                <text x="80" y="34" text-anchor="middle" font-family="serif" font-size="17" font-weight="bold" fill="rgba(0,0,0,0.62)" letter-spacing="0.5">रुपया</text>
+
+                <!-- Decorative line under रुपया -->
+                <line x1="52" y1="39" x2="108" y2="39" stroke="rgba(0,0,0,0.2)" stroke-width="0.8"/>
+
+                <!-- ════ LEFT WHEAT STALK ════ -->
+                <!-- Main stalk curve -->
+                <path d="M 50 128 Q 48 105 54 85 Q 58 70 66 55" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="1.8" stroke-linecap="round"/>
+                <!-- Wheat grains LEFT - pairs going up -->
+                <ellipse cx="46" cy="122" rx="6" ry="2.5" fill="rgba(0,0,0,0.42)" transform="rotate(-38 46 122)"/>
+                <ellipse cx="50" cy="122" rx="6" ry="2.5" fill="rgba(0,0,0,0.38)" transform="rotate(15 50 122)"/>
+                <ellipse cx="44" cy="113" rx="6" ry="2.5" fill="rgba(0,0,0,0.42)" transform="rotate(-42 44 113)"/>
+                <ellipse cx="49" cy="111" rx="6" ry="2.5" fill="rgba(0,0,0,0.38)" transform="rotate(10 49 111)"/>
+                <ellipse cx="44" cy="103" rx="6" ry="2.5" fill="rgba(0,0,0,0.4)" transform="rotate(-46 44 103)"/>
+                <ellipse cx="49" cy="101" rx="6" ry="2.5" fill="rgba(0,0,0,0.36)" transform="rotate(6 49 101)"/>
+                <ellipse cx="45" cy="93" rx="5.5" ry="2.2" fill="rgba(0,0,0,0.38)" transform="rotate(-50 45 93)"/>
+                <ellipse cx="50" cy="91" rx="5.5" ry="2.2" fill="rgba(0,0,0,0.34)" transform="rotate(4 50 91)"/>
+                <ellipse cx="48" cy="83" rx="5" ry="2" fill="rgba(0,0,0,0.36)" transform="rotate(-54 48 83)"/>
+                <ellipse cx="52" cy="81" rx="5" ry="2" fill="rgba(0,0,0,0.32)" transform="rotate(2 52 81)"/>
+                <!-- Leaf tip left -->
+                <path d="M 66 55 Q 62 50 64 44 Q 68 42 70 48 Q 68 54 66 55Z" fill="rgba(0,0,0,0.38)"/>
+                <!-- Curved bottom leaf left -->
+                <path d="M 50 128 Q 38 132 35 125 Q 36 118 46 120" fill="rgba(0,0,0,0.3)" stroke="none"/>
+
+                <!-- ════ RIGHT WHEAT STALK (mirror) ════ -->
+                <path d="M 110 128 Q 112 105 106 85 Q 102 70 94 55" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="1.8" stroke-linecap="round"/>
+                <ellipse cx="114" cy="122" rx="6" ry="2.5" fill="rgba(0,0,0,0.42)" transform="rotate(38 114 122)"/>
+                <ellipse cx="110" cy="122" rx="6" ry="2.5" fill="rgba(0,0,0,0.38)" transform="rotate(-15 110 122)"/>
+                <ellipse cx="116" cy="113" rx="6" ry="2.5" fill="rgba(0,0,0,0.42)" transform="rotate(42 116 113)"/>
+                <ellipse cx="111" cy="111" rx="6" ry="2.5" fill="rgba(0,0,0,0.38)" transform="rotate(-10 111 111)"/>
+                <ellipse cx="116" cy="103" rx="6" ry="2.5" fill="rgba(0,0,0,0.4)" transform="rotate(46 116 103)"/>
+                <ellipse cx="111" cy="101" rx="6" ry="2.5" fill="rgba(0,0,0,0.36)" transform="rotate(-6 111 101)"/>
+                <ellipse cx="115" cy="93" rx="5.5" ry="2.2" fill="rgba(0,0,0,0.38)" transform="rotate(50 115 93)"/>
+                <ellipse cx="110" cy="91" rx="5.5" ry="2.2" fill="rgba(0,0,0,0.34)" transform="rotate(-4 110 91)"/>
+                <ellipse cx="112" cy="83" rx="5" ry="2" fill="rgba(0,0,0,0.36)" transform="rotate(54 112 83)"/>
+                <ellipse cx="108" cy="81" rx="5" ry="2" fill="rgba(0,0,0,0.32)" transform="rotate(-2 108 81)"/>
+                <path d="M 94 55 Q 98 50 96 44 Q 92 42 90 48 Q 92 54 94 55Z" fill="rgba(0,0,0,0.38)"/>
+                <path d="M 110 128 Q 122 132 125 125 Q 124 118 114 120" fill="rgba(0,0,0,0.3)" stroke="none"/>
+
+                <!-- Big bold 1 -->
+                <text x="80" y="107" text-anchor="middle" font-family="Georgia,Times,serif" font-size="48" font-weight="900" fill="rgba(0,0,0,0.65)">1</text>
+
+                <!-- RUPEE text -->
+                <text x="80" y="126" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="rgba(0,0,0,0.58)" letter-spacing="3">RUPEE</text>
+
+                <!-- Decorative dots around RUPEE -->
+                <text x="80" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="rgba(0,0,0,0.45)" letter-spacing="2">2 0 2 4</text>
+
+                <!-- Bottom lotus/dot -->
+                <circle cx="80" cy="150" r="2.5" fill="rgba(0,0,0,0.3)"/>
+
+                <!-- Edge engraving effect -->
+                <circle cx="80" cy="80" r="78" fill="none" stroke="rgba(255,230,80,0.3)" stroke-width="1"/>
+                <circle cx="80" cy="80" r="77" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>
+              </svg>
+            </div>
+
+            <div class="cback">
+              <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+                <defs>
+                  <radialGradient id="silverBg" cx="38%" cy="28%" r="72%">
+                    <stop offset="0%" stop-color="#E8F5E8"/>
+                    <stop offset="25%" stop-color="#A8C8A0"/>
+                    <stop offset="60%" stop-color="#6B9B63"/>
+                    <stop offset="85%" stop-color="#4A7A42"/>
+                    <stop offset="100%" stop-color="#2D5528"/>
+                  </radialGradient>
+                  <radialGradient id="silverShine" cx="30%" cy="22%" r="55%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
+                    <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                  </radialGradient>
+                </defs>
+
+                <!-- Main silver-green face -->
+                <circle cx="80" cy="80" r="80" fill="url(#silverBg)"/>
+                <circle cx="80" cy="80" r="80" fill="url(#silverShine)"/>
+
+                <!-- Outer dotted border -->
+                <circle cx="80" cy="80" r="74" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="1.2" stroke-dasharray="3,4.5"/>
+                <circle cx="80" cy="80" r="68" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+
+                <!-- Ashoka Lion Pillar simplified -->
+                <!-- Lion base rectangle -->
+                <rect x="64" y="100" width="32" height="6" rx="2" fill="rgba(0,0,0,0.5)"/>
+                <rect x="70" y="94" width="20" height="7" rx="1.5" fill="rgba(0,0,0,0.45)"/>
+                <!-- Pillar column -->
+                <rect x="76" y="58" width="8" height="38" rx="2" fill="rgba(0,0,0,0.45)"/>
+                <!-- Capital top -->
+                <ellipse cx="80" cy="57" rx="12" ry="5" fill="rgba(0,0,0,0.5)"/>
+                <!-- Lion body simplified -->
+                <ellipse cx="80" cy="46" rx="14" ry="10" fill="rgba(0,0,0,0.45)"/>
+                <!-- Lion head -->
+                <circle cx="80" cy="36" r="8" fill="rgba(0,0,0,0.45)"/>
+                <!-- Lion mane dots -->
+                <circle cx="72" cy="40" r="3" fill="rgba(0,0,0,0.3)"/>
+                <circle cx="88" cy="40" r="3" fill="rgba(0,0,0,0.3)"/>
+                <!-- Eyes -->
+                <circle cx="77" cy="35" r="1.5" fill="rgba(255,255,255,0.5)"/>
+                <circle cx="83" cy="35" r="1.5" fill="rgba(255,255,255,0.5)"/>
+                <!-- Paws -->
+                <ellipse cx="68" cy="50" rx="6" ry="3" fill="rgba(0,0,0,0.4)"/>
+                <ellipse cx="92" cy="50" rx="6" ry="3" fill="rgba(0,0,0,0.4)"/>
+                <!-- Wheel on base -->
+                <circle cx="80" cy="97" r="5" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="1.5"/>
+                <circle cx="80" cy="97" r="1.5" fill="rgba(0,0,0,0.5)"/>
+
+                <!-- भारत text -->
+                <text x="80" y="25" text-anchor="middle" font-family="serif" font-size="13" font-weight="bold" fill="rgba(0,0,0,0.6)">भारत</text>
+
+                <!-- INDIA text -->
+                <text x="80" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="rgba(0,0,0,0.58)" letter-spacing="3">INDIA</text>
+
+                <!-- TAILS text -->
+                <text x="80" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="rgba(0,0,0,0.4)" letter-spacing="2">★ TAILS ★</text>
+
+                <!-- Satyamev Jayate -->
+                <text x="80" y="130" text-anchor="middle" font-family="serif" font-size="7" fill="rgba(0,0,0,0.45)" letter-spacing="1">सत्यमेव जयते</text>
+
+                <!-- Edge -->
+                <circle cx="80" cy="80" r="78" fill="none" stroke="rgba(150,220,150,0.3)" stroke-width="1"/>
+                <circle cx="80" cy="80" r="77" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="result-d" id="resultTxt"></div>
+      <div>
+        <div style="text-align:center;font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Recent Results</div>
+        <div class="dots-row">
+          <div class="sdot" id="d0"></div>
+          <div style="color:var(--bor);font-size:18px">·</div>
+          <div class="sdot" id="d1"></div>
+          <div style="color:var(--bor);font-size:18px">·</div>
+          <div class="sdot" id="d2"></div>
+        </div>
+      </div>
+      <div style="text-align:center">
+        <div id="flipUIHidden" style="display:none">
+          <button class="flip-btn" id="flipBtn" onclick="doFlip()">🪙 FLIP THE COIN!</button>
+        </div>
+        <button class="start-flip-btn" id="startFlipBtn" onclick="openPF()">🪙 START FLIP — ₹50 ENTRY</button>
+        <div class="coin-meta" style="margin-top:12px">
+          Entry: <b>₹50</b> &nbsp;|&nbsp; Step 1: Pay · Step 2: Review · Step 3: Flip<br>
+          Prize: <span class="prize">₹500 FREE Meal</span> &nbsp;|&nbsp; Flips today: <b id="fCount">0</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="background:#420000" id="features">
+  <div class="tc">
+    <div class="tag">Why Choose Us</div>
+    <h2 class="sec-title">THE <span>THIRD LEVEL</span> EXPERIENCE</h2>
+    <p class="sec-desc" style="margin:0 auto">Delhi ka sabse unique metro café — har visit khaas hai</p>
+  </div>
+  <div class="feat-grid">
+    <div class="fcard rise"><div class="fc-em">🚇</div><div class="fc-t">Inside the Metro</div><div class="fc-d">Located right inside Kashmiri Gate Metro Station — no detour, just great food between your commute.</div></div>
+    <div class="fcard rise delay1"><div class="fc-em">🌿</div><div class="fc-t">100% Pure Vegetarian</div><div class="fc-d">Every single dish is 100% vegetarian — crafted fresh daily with quality ingredients.</div></div>
+    <div class="fcard rise delay2"><div class="fc-em">⚡</div><div class="fc-t">Express Service</div><div class="fc-d">Built for metro life — fast service without compromising on taste or quality.</div></div>
+    <div class="fcard rise delay3"><div class="fc-em">🎨</div><div class="fc-t">Distinctive Ambience</div><div class="fc-d">Retro art murals, neon lighting, warm interiors — every corner is photo-worthy.</div></div>
+    <div class="fcard rise delay4"><div class="fc-em">🧊</div><div class="fc-t">Signature Beverages</div><div class="fc-d">Indulgent shakes, cold coffees, fresh coolers — crafted to perfection, every single time.</div></div>
+    <div class="fcard rise delay5"><div class="fc-em">🪙</div><div class="fc-t">Win a ₹500 FREE Meal</div><div class="fc-d">Delhi's only café where you can literally win your entire meal for free — just flip a coin!</div></div>
+  </div>
+</section>
+
+<!-- SPECIALS -->
+<section class="section specials" id="specials">
+  <div class="tc">
+    <div class="tag">Deals & Offers</div>
+    <h2 class="sec-title">CURRENT <span>OFFERS</span></h2>
+    <p class="sec-desc" style="margin:0 auto">Exclusive deals — Only at The Third Level Café, Kashmiri Gate</p>
+  </div>
+
+  <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px" class="grid-offers">
+
+    <!-- Monsoon / Winter Offer -->
+    <div class="offer-hero reveal">
+      <div class="oh-badge">🌿 Active Now</div>
+      <div class="oh-pct">25%</div>
+      <div class="oh-off">OFF</div>
+      <div class="oh-title" style="margin-top:8px">Monsoon & Winter Sale</div>
+      <div class="oh-desc">
+        Beat the season blues with our biggest discount — 25% OFF on your entire order.
+        No minimum order value. Valid on dine-in and takeaway both!
+      </div>
+      <div class="oh-seasons">
+        <div class="oh-season">🌧️ Monsoon: June – September</div>
+        <div class="oh-season">❄️ Winter: November – February</div>
+      </div>
+      <div style="margin-top:16px;font-size:12px;color:var(--m)">
+        * GST applicable as per government regulations. Discount on food only.
+      </div>
+    </div>
+
+    <!-- Student Discount -->
+    <div class="student-card reveal delay1">
+      <div class="sc-header">
+        <div class="sc-icon">🎓</div>
+        <div>
+          <div class="sc-title">Student Discount</div>
+          <div class="sc-sub">10% OFF for verified students</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--m);line-height:1.75;margin-bottom:16px">
+        Present your valid student ID and enter your <strong style="color:var(--w)">Enrollment or Admission Number</strong> to unlock an exclusive 10% discount on your order.
+      </p>
+      <div class="inp-label" style="font-size:11px;color:var(--m);margin-bottom:5px">Enrollment / Admission Number</div>
+      <div class="sc-input-row">
+        <input class="inp" id="studentId" placeholder="e.g. DU2024012345 or 2024/BCA/001" style="font-size:13px">
+        <button class="sc-verify-btn" onclick="verifyStudent()">Verify ✓</button>
+      </div>
+      <div class="sc-result" id="scResult"></div>
+      <div style="margin-top:14px;background:var(--s2);border:1px solid var(--bor);border-radius:8px;padding:12px;font-size:12px;color:var(--m);line-height:1.7">
+        ✅ Accepted: College/University enrollment numbers<br>
+        ✅ Accepted: School admission numbers (Class 9-12)<br>
+        📎 Bring your original ID card to the café for verification
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="section" style="background:#380000;border-top:1px solid var(--bor)" id="location">
+  <div class="loc-grid">
+    <div class="tilt-l">
+      <div class="tag">Find Us</div>
+      <h2 class="sec-title">COME <span>VISIT</span> US</h2>
+      <p class="sec-desc" style="margin-bottom:24px">Located at Concourse Level, Kashmiri Gate Metro Station — Delhi's largest transit interchange. Served by the Yellow, Red and Violet lines, it is the most accessible dining spot in the city.</p>
+      <div class="mbadges" style="margin-bottom:18px">
+        <span class="mbg y">🟡 Yellow Line</span>
+        <span class="mbg r">🔴 Red Line</span>
+        <span class="mbg v">🟣 Violet Line</span>
+      </div>
+      <div class="loc-card"><div class="loc-i">📍</div><div><div class="loc-lbl">Address</div><div class="loc-v">The Third Level Café<br>Kashmiri Gate Metro Station, Delhi – 110006</div></div></div>
+      <div class="loc-card"><div class="loc-i">🕐</div><div><div class="loc-lbl">Opening Hours</div><div class="loc-v">Monday – Sunday<br>8:00 AM – 10:30 PM (All Days Open)</div></div></div>
+      <div class="loc-card"><div class="loc-i">📞</div><div><div class="loc-lbl">Contact</div><div class="loc-v">+91 98XXX XXXXX<br>thirdlevelcafe@gmail.com</div></div></div>
+    </div>
+    <div class="tilt-r">
+      <div class="map-mock">
+        <div class="map-pin">📍</div>
+        <div class="map-t">Kashmiri Gate Metro Station</div>
+        <div class="map-s">Delhi NCR · Triple Interchange</div>
+        <div style="font-size:12px;color:var(--m);position:relative">🚇 Yellow · Red · Violet Line</div>
+        <button class="map-link" onclick="window.open('https://maps.google.com/?q=Kashmiri+Gate+Metro+Station+Delhi','_blank')">🗺️ Open Google Maps</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS & RATINGS SECTION -->
+<section class="section reviews-sec" id="reviews">
+  <div class="tc">
+    <div class="tag">Customer Reviews</div>
+    <h2 class="sec-title">WHAT PEOPLE <span>SAY</span></h2>
+    <p class="sec-desc" style="margin:0 auto">Hamare customers ki asli rai — bina kisi editing ke!</p>
+  </div>
+  <div class="reviews-layout">
+
+    <!-- Left: Overall Rating + Rating Form -->
+    <div>
+      <div class="overall-rating">
+        <div class="or-num">4.8</div>
+        <div class="or-stars">★★★★★</div>
+        <div class="or-count">847 Google Reviews · 312 In-App Reviews</div>
+        <div class="or-bars">
+          <div class="or-bar-row"><span class="or-bar-lbl">5 ★</span><div class="or-bar-track"><div class="or-bar-fill" style="width:78%"></div></div><span class="or-bar-pct">78%</span></div>
+          <div class="or-bar-row"><span class="or-bar-lbl">4 ★</span><div class="or-bar-track"><div class="or-bar-fill" style="width:14%"></div></div><span class="or-bar-pct">14%</span></div>
+          <div class="or-bar-row"><span class="or-bar-lbl">3 ★</span><div class="or-bar-track"><div class="or-bar-fill" style="width:5%"></div></div><span class="or-bar-pct">5%</span></div>
+          <div class="or-bar-row"><span class="or-bar-lbl">2 ★</span><div class="or-bar-track"><div class="or-bar-fill" style="width:2%"></div></div><span class="or-bar-pct">2%</span></div>
+          <div class="or-bar-row"><span class="or-bar-lbl">1 ★</span><div class="or-bar-track"><div class="or-bar-fill" style="width:1%"></div></div><span class="or-bar-pct">1%</span></div>
+        </div>
+      </div>
+
+      <!-- Review Form -->
+      <div class="review-form rise">
+        <div class="rf-title">✍️ Apna Review Do</div>
+        <div class="rf-label">Rating</div>
+        <div class="star-row" id="starRow">
+          <span class="star" onclick="setStar(1)">⭐</span>
+          <span class="star" onclick="setStar(2)">⭐</span>
+          <span class="star" onclick="setStar(3)">⭐</span>
+          <span class="star" onclick="setStar(4)">⭐</span>
+          <span class="star" onclick="setStar(5)">⭐</span>
+        </div>
+        <div class="rf-label" style="margin-top:10px">Aapka Naam</div>
+        <input class="rf-input" id="rfName" placeholder="Your name">
+        <div class="rf-label" style="margin-top:10px">Aapka Experience</div>
+        <textarea class="rf-input rf-textarea" id="rfText" placeholder="Share your experience — food, service, ambience..."></textarea>
+        <div class="rf-label" style="margin-top:10px">Favourite Item (optional)</div>
+        <input class="rf-input" id="rfItem" placeholder="e.g. Masala Dosa, Cold Coffee...  (optional)">
+        <button class="rf-submit" onclick="submitReview()">Submit Review →</button>
+      </div>
+    </div>
+
+    <!-- Right: Review Cards -->
+    <div class="review-cards" id="reviewCards"></div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="flogo">THE <span>THIRD LEVEL</span> CAFÉ</div>
+      <p class="fdesc">Delhi's most distinctive metro café — exceptional food, bold ambience, and a chance to win a ₹500 FREE meal. Find us at Kashmiri Gate Metro Station.</p>
+      <div class="socials">
+        <div class="soc" title="Instagram">📸</div>
+        <div class="soc" title="Facebook">👍</div>
+        <div class="soc" title="WhatsApp">💬</div>
+        <div class="soc" title="Google">⭐</div>
+      </div>
+    </div>
+    <div>
+      <div class="fc-t">Menu</div>
+      <div class="fc-links">
+        <a href="#">Starters</a><a href="#">Main Course</a>
+        <a href="#">Burgers & Sandwiches</a><a href="#">Beverages</a>
+        <a href="#">Desserts</a><a href="#">Daily Specials</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-t">Quick Links</div>
+      <div class="fc-links">
+        <a href="#about">About Us</a><a href="#coin-game">Try Your Luck 🪙</a>
+        <a href="#features">Why Choose Us</a><a href="#specials">Offers</a>
+        <a href="#location">Find Us</a><a href="#">Careers →</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-t">Timings</div>
+      <div class="fc-links">
+        <a href="#">Mon–Fri: 8AM – 10:30PM</a>
+        <a href="#">Sat–Sun: 8AM – 11PM</a>
+        <a href="#">Holidays: Open</a>
+      </div>
+      <div style="margin-top:18px">
+        <div class="fc-t">Follow Us</div>
+        <div style="font-size:13px;color:var(--m)">@thethirdlevel_ · @thethirdlevelcafe</div>
+        <div style="font-size:12px;color:var(--m);margin-top:3px">Tag us & show at counter for a FREE surprise! ☕</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div>© 2025 The Third Level Café. All rights reserved.</div>
+    <div>"Where every craving finds its level" — Inspired by Jack Finney's The Third Level</div>
+    <div>Developed by <a href="#">Aman Kumar Verma</a></div>
+  </div>
+</footer>
+
+</div><!-- end mainSite -->
+
+<!-- ══════════════════════════════════
+     3-STEP ORDER MODAL
+══════════════════════════════════ -->
+<div class="order-overlay" id="orderOverlay">
+  <div class="order-modal">
+    <div class="om-header">
+      <div class="om-logo">THE <span>THIRD LEVEL</span> CAFÉ</div>
+      <button class="om-close" onclick="closeOrder()">✕</button>
+    </div>
+
+    <!-- Steps Bar -->
+    <div class="steps-bar">
+      <div class="step-wrap">
+        <div class="step-circle active" id="sc1">1</div>
+        <div class="step-label">Choose Items</div>
+      </div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step-wrap">
+        <div class="step-circle" id="sc2">2</div>
+        <div class="step-label">Review Cart</div>
+      </div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step-wrap">
+        <div class="step-circle" id="sc3">3</div>
+        <div class="step-label">Confirm & Pay</div>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="om-body" id="step1">
+      <div class="om-cats" id="omCats"></div>
+      <div class="om-items" id="omItems"></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="om-body" id="step2" style="display:none">
+      <div style="font-size:16px;font-weight:700;margin-bottom:14px;color:var(--gold)">🛒 Your Order</div>
+      <div id="cartList"></div>
+      <div class="bill-sum" id="billSum"></div>
+      <div style="font-size:13px;font-weight:600;margin-top:18px;margin-bottom:10px">Dine-in or Takeaway?</div>
+      <div class="dine-opts">
+        <button class="dine-btn sel" id="dineBtn" onclick="setDine('dine')">🪑 Dine In</button>
+        <button class="dine-btn" id="takeBtn" onclick="setDine('take')">🛍️ Takeaway</button>
+      </div>
+      <div id="tableRow" style="margin-top:14px">
+        <div class="inp-label">Table Number (optional)</div>
+        <input class="inp" id="tableInp" placeholder="e.g. Table 3, Table 5...">
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="om-body" id="step3" style="display:none">
+      <div style="font-size:16px;font-weight:700;margin-bottom:16px;color:var(--gold)">📋 Confirm Your Order</div>
+      <div class="mt2">
+        <div class="inp-label">Your Name *</div>
+        <input class="inp" id="custName" placeholder="Your full name">
+      </div>
+      <div class="mt3">
+        <div class="inp-label">Phone Number *</div>
+        <input class="inp" id="custPhone" type="tel" maxlength="10" placeholder="10-digit mobile number">
+      </div>
+      <div style="font-size:13px;font-weight:600;margin-top:18px;margin-bottom:10px">Payment Method</div>
+      <div class="pay-opts">
+        <div class="pay-opt sel" id="po1" onclick="setPay('upi')">
+          <div class="pay-em">📱</div>
+          <div class="pay-label">UPI Payment</div>
+          <div class="pay-sub">PhonePe · GPay · Paytm</div>
+        </div>
+        <div class="pay-opt" id="po2" onclick="setPay('cash')">
+          <div class="pay-em">💵</div>
+          <div class="pay-label">Cash</div>
+          <div class="pay-sub">Pay at counter</div>
+        </div>
+        <div class="pay-opt" id="po3" onclick="setPay('card')">
+          <div class="pay-em">💳</div>
+          <div class="pay-label">Card</div>
+          <div class="pay-sub">Debit / Credit</div>
+        </div>
+        <div class="pay-opt" id="po4" onclick="setPay('later')">
+          <div class="pay-em">🧾</div>
+          <div class="pay-label">Pay Later</div>
+          <div class="pay-sub">After eating</div>
+        </div>
+      </div>
+      <div class="bill-sum" id="billSum3" style="margin-top:14px"></div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="om-body" id="stepSuccess" style="display:none">
+      <div class="success-box">
+        <span class="suc-em">🎉</span>
+        <div class="suc-title">ORDER PLACED!</div>
+        <div style="color:var(--m);font-size:14px;margin-top:6px">Aapka order kitchen ko bheja ja raha hai!</div>
+        <div class="suc-info" id="sucInfo"></div>
+        <button class="btn-r" style="margin-top:6px" onclick="closeOrder()">Back to Home 🏠</button>
+      </div>
+    </div>
+
+    <!-- CART BAR -->
+    <div class="cart-bar" id="cartBar">
+      <div>
+        <div class="cb-items"><b id="cbCount">0</b> items</div>
+      </div>
+      <div class="cb-total" id="cbTotal">₹0</div>
+      <button class="cb-next" id="cbNext" onclick="nextStep()" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRE-FLIP MODAL (3-step: Pay → Review → Flip) -->
+<div class="preflip-ov" id="prefOv">
+  <div class="preflip-box">
+    <div class="pf-header">
+      <div class="pf-logo">THE <span>THIRD LEVEL</span> CAFÉ</div>
+      <div style="font-size:12px;color:var(--m);margin-top:4px">🪙 Coin Flip — Win ₹500 FREE Meal</div>
+    </div>
+    <!-- Steps indicator -->
+    <div class="pf-steps">
+      <div class="pf-step-dot act" id="psd1">1</div>
+      <div class="pf-line" id="psl1"></div>
+      <div class="pf-step-dot" id="psd2">2</div>
+      <div class="pf-line" id="psl2"></div>
+      <div class="pf-step-dot" id="psd3">3</div>
+    </div>
+    <!-- STEP 1: Pay -->
+    <div class="pf-body" id="pfStep1">
+      <div class="pf-step-title">STEP 1 — PAY ENTRY FEE</div>
+      <div class="pf-step-desc">
+        Please visit the café counter and pay the participation fee. Show this screen to the staff.
+      </div>
+      <div class="pf-pay-box">
+        <div style="font-size:13px;color:var(--m);margin-bottom:4px">Participation Fee</div>
+        <div class="pf-amount">₹50</div>
+        <div class="pf-amnt-lbl">Pay at Counter · Cash / UPI accepted</div>
+      </div>
+      <div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:8px;padding:12px;margin-bottom:16px;font-size:12px;color:#ccc;line-height:1.7">
+        🏆 Win Condition: Guess the correct side (Heads or Tails)<br>
+        🎁 Prize: Any meal up to ₹500 — absolutely FREE!<br>
+        ⭐ Requirement: Leave a Google review after winning
+      </div>
+      <button class="pf-confirm-btn" onclick="pfNext(1)">✅ Paid ₹50 — Next Step →</button>
+      <span class="pf-cancel" onclick="closePF()">Cancel</span>
+    </div>
+    <!-- STEP 2: Google Review -->
+    <div class="pf-body" id="pfStep2" style="display:none">
+      <div class="pf-step-title">STEP 2 — RATE US ⭐</div>
+      <div class="pf-step-desc">
+        Give us a 5-star Google review to unlock your coin flip. Your feedback means the world to us!
+      </div>
+      <div class="pf-g-box">
+        <div style="text-align:center;font-size:13px;color:var(--m);margin-bottom:4px">Select Your Rating</div>
+        <div class="pf-star-row">
+          <span class="pf-star" onclick="pfSetStar(1)">⭐</span>
+          <span class="pf-star" onclick="pfSetStar(2)">⭐</span>
+          <span class="pf-star" onclick="pfSetStar(3)">⭐</span>
+          <span class="pf-star" onclick="pfSetStar(4)">⭐</span>
+          <span class="pf-star" onclick="pfSetStar(5)">⭐</span>
+        </div>
+        <div id="pfStarMsg" style="text-align:center;font-size:12px;color:var(--m);min-height:18px"></div>
+      </div>
+      <button class="pf-g-open" onclick="openGoogleReview()">
+        <span style="font-weight:900;font-size:16px"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>
+        Open Google Maps — Leave Review
+      </button>
+      <button class="pf-done-btn" id="pfReviewDone" onclick="pfNext(2)" disabled>
+        ✅ I've Left a 5-Star Review — Flip Now!
+      </button>
+      <span class="pf-cancel" onclick="closePF()">Cancel</span>
+    </div>
+    <!-- STEP 3: Ready! -->
+    <div class="pf-body" id="pfStep3" style="display:none">
+      <div style="text-align:center;padding:10px 0">
+        <div style="font-size:56px;margin-bottom:12px">🪙</div>
+        <div class="pf-step-title" style="text-align:center">YOU'RE READY!</div>
+        <div style="font-size:14px;color:var(--m);margin-bottom:20px;line-height:1.7">
+          Entry paid ✅ · Review given ✅<br>
+          Now choose Heads or Tails and flip the coin!
+        </div>
+        <button class="pf-confirm-btn" style="background:var(--red);color:#fff" onclick="closePFandFlip()">
+          🎯 Let's Flip the Coin!
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WIN MODAL -->
+<div class="win-ov" id="winOv">
+  <div class="win-modal">
+    <span class="win-em">🎉</span>
+    <div class="win-t">YOU WIN!</div>
+    <div class="win-rs">₹500</div>
+    <p class="win-desc">Aapki guess sahi nikli! 🎊<br>
+    Yeh screen café staff ko dikhaao aur<br><b>₹500 tak ka koi bhi meal FREE</b> lo!<br>
+    <span style="font-size:12px;color:var(--m)">Ek Google Review zaroor dena 😊</span></p>
+    <p style="font-size:12px;color:#888;margin-bottom:6px">Prize claim karne ke liye Google Review do!</p>
+    <button class="win-g-btn" onclick="openGoogleReview()">
+      <span style="font-weight:900;font-size:16px"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>
+      ⭐ Leave a Review
+    </button>
+    <button class="win-close" style="margin-top:12px" onclick="closeWin()">🏆 Claim My Prize!</button>
+  </div>
+</div>
+
+<div class="toast-c" id="toastC"></div>
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+// ── State ──
+let currentUser = null;
+let cart = [];
+let orderStep = 1;
+let dineMode = 'dine';
+let payMode = 'upi';
+let chosen = null;
+let flipping = false;
+let flipTotal = 0;
+let dotIdx = 0;
+
+// ── MENU DATA (Real Menu — The Third Level Café) ──
+const MENU = {
+  "Hot Beverages":[
+    {id:1,n:"Classic Tea",p:200,v:true,d:"Freshly brewed Indian tea",pop:false},
+    {id:2,n:"Classic Coffee",p:200,v:true,d:"Rich smooth brewed coffee",pop:false},
+    {id:3,n:"Masala Tea",p:250,v:true,d:"Aromatic spiced Indian chai",pop:true},
+    {id:4,n:"Ginger Tea",p:250,v:true,d:"Zingy fresh ginger brew",pop:false},
+    {id:5,n:"Filter Coffee",p:250,v:true,d:"South Indian decoction style",pop:false},
+    {id:6,n:"Lemon Tea",p:280,v:true,d:"Refreshing lemon-infused tea",pop:false},
+    {id:7,n:"Black Tea",p:280,v:true,d:"Pure black tea, no milk",pop:false},
+    {id:8,n:"Espresso",p:320,v:true,d:"Strong Italian espresso shot",pop:false},
+    {id:9,n:"Black Coffee",p:360,v:true,d:"Premium dark roast coffee",pop:false},
+    {id:10,n:"Cappuccino",p:380,v:true,d:"Espresso with velvety milk foam",pop:true},
+  ],
+  "Coolers":[
+    {id:11,n:"Fresh Lime Soda",p:250,v:true,d:"Sweet or salt — your choice",pop:true},
+    {id:12,n:"Virgin Mojito",p:350,v:true,d:"Mint lime sparkling refresher",pop:true},
+    {id:13,n:"Orange Delight",p:350,v:true,d:"Fresh orange cooler",pop:false},
+    {id:14,n:"Watermelon Basil",p:380,v:true,d:"Seasonal watermelon with basil",pop:false},
+    {id:15,n:"Blue Lagoon",p:380,v:true,d:"Cool blue tropical soda",pop:false},
+    {id:16,n:"Lemon Iced Tea",p:420,v:true,d:"Chilled brewed tea with lemon",pop:false},
+    {id:17,n:"Peach Iced Tea",p:420,v:true,d:"Peachy sweet chilled tea",pop:false},
+  ],
+  "Shakes & Cold Coffee":[
+    {id:18,n:"Vanilla Shake",p:350,v:true,d:"Classic creamy vanilla blend",pop:false},
+    {id:19,n:"Strawberry Shake",p:350,v:true,d:"Fresh strawberry smoothie",pop:false},
+    {id:20,n:"Butterscotch Shake",p:350,v:true,d:"Rich butterscotch cream shake",pop:false},
+    {id:21,n:"Classic Cold Coffee",p:400,v:true,d:"Our signature cold coffee blend",pop:true},
+    {id:22,n:"Flavoured Cold Coffee",p:450,v:true,d:"Flavoured cold coffee blend",pop:false},
+    {id:23,n:"Chocopie Shake",p:450,v:true,d:"Chocopie blended with ice cream",pop:false},
+    {id:24,n:"Oreo Vanilla Shake",p:480,v:true,d:"Crushed Oreo with vanilla",pop:true},
+    {id:25,n:"Mango Alphonso Shake",p:480,v:true,d:"Premium Alphonso mango blend",pop:false},
+    {id:26,n:"KitKat Shake",p:530,v:true,d:"KitKat chocolate shake",pop:false},
+    {id:27,n:"Hazelnut Shake",p:580,v:true,d:"Roasted hazelnut cream shake",pop:false},
+    {id:28,n:"Brownie Shake",p:620,v:true,d:"Warm brownie blended shake",pop:false},
+  ],
+  "Desserts":[
+    {id:29,n:"Ice Cream",p:150,v:true,d:"Classic single scoop",pop:false},
+    {id:30,n:"Premium Ice Cream",p:250,v:true,d:"Artisan premium scoop",pop:false},
+    {id:31,n:"Chocolate Brownie",p:300,v:true,d:"Warm dark chocolate brownie",pop:true},
+    {id:32,n:"Brownie with Ice Cream",p:400,v:true,d:"Warm brownie + cold vanilla scoop",pop:true},
+  ],
+  "Starters & Sides":[
+    {id:33,n:"Classic Garlic Bread",p:200,v:true,d:"Toasted with garlic butter",pop:false},
+    {id:34,n:"Cheesy Garlic Bread",p:250,v:true,d:"Loaded with melted cheese",pop:false},
+    {id:35,n:"Chilli Potato",p:250,v:true,d:"Crispy potato in spicy sauce",pop:true},
+    {id:36,n:"Loaded Cheesy Nachos",p:250,v:true,d:"Tortilla chips with cheese dip",pop:false},
+    {id:37,n:"Honey Chilli Potato",p:300,v:true,d:"Sweet chilli glazed potatoes",pop:false},
+    {id:38,n:"Chilli Paneer Dry",p:300,v:true,d:"Indo-Chinese stir fried paneer",pop:true},
+    {id:39,n:"Paneer Tikka (Dry)",p:300,v:true,d:"Smoky grilled cottage cheese",pop:true},
+    {id:40,n:"Paneer Tikka (Gravy)",p:300,v:true,d:"Tikka in rich masala gravy",pop:false},
+    {id:41,n:"Chilli Paneer Gravy",p:350,v:true,d:"Saucy Indo-Chinese paneer",pop:false},
+    {id:42,n:"Manchurian (Dry)",p:400,v:true,d:"Crispy veg balls tossed in sauce",pop:false},
+    {id:43,n:"Manchurian (Gravy)",p:450,v:true,d:"Veg balls in Indo-Chinese gravy",pop:false},
+  ],
+  "South Indian":[
+    {id:44,n:"Medu Vada",p:200,v:true,d:"Crispy urad dal fritters",pop:false},
+    {id:45,n:"Idli (2 pcs)",p:200,v:true,d:"Steamed rice cakes with sambar",pop:false},
+    {id:46,n:"Plain Dosa",p:220,v:true,d:"Thin crispy rice crepe",pop:false},
+    {id:47,n:"Butter Dosa",p:250,v:true,d:"Dosa with generous butter",pop:false},
+    {id:48,n:"Masala Dosa",p:280,v:true,d:"Stuffed with spiced potato",pop:true},
+    {id:49,n:"Onion Masala Dosa",p:300,v:true,d:"Onion & potato stuffed dosa",pop:false},
+    {id:50,n:"Mysore Masala Dosa",p:350,v:true,d:"Spicy red chutney dosa",pop:false},
+    {id:51,n:"Jini Dosa",p:380,v:true,d:"Multi-layered loaded dosa",pop:true},
+    {id:52,n:"Paneer Dosa",p:380,v:true,d:"Paneer stuffed crispy dosa",pop:false},
+    {id:53,n:"Cheese Paneer Dosa",p:400,v:true,d:"Double loaded cheese & paneer dosa",pop:false},
+  ],
+  "Burgers & Sandwiches":[
+    {id:54,n:"Level One Smash Burger",p:290,v:true,d:"Our signature smash patty burger",pop:true},
+    {id:55,n:"Crispy Aloo Crunch Burger",p:300,v:true,d:"Crispy potato patty with crunch",pop:false},
+    {id:56,n:"Cheese Burst at Level Three",p:350,v:true,d:"Cheese-filled premium burger",pop:true},
+    {id:57,n:"Paneer Grill — Third Level Edition",p:380,v:true,d:"Grilled paneer signature burger",pop:false},
+    {id:58,n:"Plain Cold Sandwich",p:150,v:true,d:"Simple, fresh and satisfying",pop:false},
+    {id:59,n:"Club Veg Sandwich",p:250,v:true,d:"Classic triple layered club",pop:false},
+    {id:60,n:"Club Cheesy Corn Sandwich",p:300,v:true,d:"Corn & cheese loaded club",pop:false},
+    {id:61,n:"Club Paneer Tikka Sandwich",p:350,v:true,d:"Grilled paneer tikka sandwich",pop:false},
+    {id:62,n:"Peri Cheesy Paneer Tikka",p:450,v:true,d:"Spicy peri-peri paneer sandwich",pop:false},
+  ],
+  "Pizza & Pasta":[
+    {id:63,n:"Level Three Margherita",p:249,v:true,d:"Classic tomato & mozzarella pizza (Reg)",pop:true},
+    {id:64,n:"Corn Exotica Pizza",p:300,v:true,d:"Sweet corn loaded pizza (Regular)",pop:false},
+    {id:65,n:"Garden Veg Level Pizza",p:350,v:true,d:"Garden fresh veggie pizza (Regular)",pop:false},
+    {id:66,n:"Paneer Tikka Special Pizza",p:450,v:true,d:"Chef's signature paneer tikka pizza (Reg)",pop:true},
+    {id:67,n:"Red Arrabbiata Pasta",p:450,v:true,d:"Spicy tomato base pasta",pop:false},
+    {id:68,n:"Alfredo Pasta",p:550,v:true,d:"Creamy white sauce pasta",pop:true},
+    {id:69,n:"Mixed Sauce Pasta",p:600,v:true,d:"Red & white sauce — best of both",pop:false},
+  ],
+  "Noodles & Rice":[
+    {id:70,n:"Veg Noodles",p:300,v:true,d:"Classic stir fried noodles",pop:false},
+    {id:71,n:"Veg Hakka Noodles",p:330,v:true,d:"Indo-Chinese hakka style",pop:false},
+    {id:72,n:"Chilli Garlic Noodles",p:380,v:true,d:"Spicy chilli garlic toss",pop:true},
+    {id:73,n:"Singapore Noodles",p:430,v:true,d:"Fragrant Singapore curry noodles",pop:false},
+    {id:74,n:"Schezwan Noodles",p:520,v:true,d:"Fiery Schezwan sauce noodles",pop:false},
+    {id:75,n:"Veg Fried Rice",p:300,v:true,d:"Wok tossed vegetable fried rice",pop:false},
+    {id:76,n:"Burnt Garlic Fried Rice",p:350,v:true,d:"Smoky burnt garlic fried rice",pop:true},
+    {id:77,n:"Schezwan Fried Rice",p:380,v:true,d:"Spicy Schezwan flavoured rice",pop:false},
+  ],
+  "Momos & Rolls":[
+    {id:78,n:"Steamed Momos (Veg)",p:200,v:true,d:"Classic steamed dumplings with chutney",pop:false},
+    {id:79,n:"Fried Momos (Veg)",p:250,v:true,d:"Crispy golden fried dumplings",pop:true},
+    {id:80,n:"Kurkure Momos (Veg)",p:300,v:true,d:"Crunchy coated momos",pop:false},
+    {id:81,n:"Paneer Kurkure Momos",p:330,v:true,d:"Paneer stuffed crispy momos",pop:false},
+    {id:82,n:"Veg Spring Roll",p:250,v:true,d:"Crispy veggie spring rolls",pop:false},
+    {id:83,n:"Paneer Spring Roll",p:300,v:true,d:"Paneer stuffed crispy rolls",pop:false},
+    {id:84,n:"Paneer Kurkure Spring Roll",p:400,v:true,d:"Extra crispy paneer rolls",pop:false},
+  ],
+  "Wraps & Burritos":[
+    {id:85,n:"Hummus & Garden Wrap",p:350,v:true,d:"Fresh garden veggies with hummus",pop:false},
+    {id:86,n:"Mexican Veg Wrap",p:300,v:true,d:"Loaded Mexican style wrap",pop:false},
+    {id:87,n:"Paneer Tikka Wrap",p:400,v:true,d:"Grilled paneer tikka wrap",pop:true},
+    {id:88,n:"Veggie Loaded Burrito",p:300,v:true,d:"Hearty veggie burrito",pop:false},
+    {id:89,n:"Aloo Tikki Burrito",p:330,v:true,d:"Spiced potato tikki burrito",pop:false},
+    {id:90,n:"Paneer Tikka Burrito",p:360,v:true,d:"Grilled paneer filled burrito",pop:false},
+    {id:91,n:"Peri-peri Paneer Burrito",p:390,v:true,d:"Spicy peri-peri paneer burrito",pop:false},
+  ],
+  "Comfort Bowls":[
+    {id:92,n:"Urban Manchu Bowl",p:600,v:true,d:"Manchurian + Fried Rice combo",pop:false},
+    {id:93,n:"Manchu Schezwan Fusion",p:700,v:true,d:"Manchurian + Schezwan Noodles",pop:false},
+    {id:94,n:"Metro Chilli Paneer Blaze",p:750,v:true,d:"Chilli Paneer + Veg Noodles",pop:true},
+    {id:95,n:"Royal Schezwan Fusion",p:900,v:true,d:"Chilli Paneer + Schezwan Noodles — Chef's Best!",pop:false},
+  ],
+  "Combos":[
+    {id:96,n:"Quick Bite Combo",p:350,v:true,d:"Veg Tadka Maggi + Classic Tea",pop:false},
+    {id:97,n:"Student Burger Combo",p:350,v:true,d:"Level One Smash Burger + Any Soft Drink",pop:true},
+    {id:98,n:"Dosa Coffee Combo",p:480,v:true,d:"Masala Dosa + Filter Coffee",pop:false},
+    {id:99,n:"Pizza Drink Combo",p:300,v:true,d:"Margherita Pizza Regular + Any Soft Drink",pop:false},
+    {id:100,n:"Happiest Meal Combo",p:800,v:true,d:"Smash Burger + Classic Fries + Cold Coffee",pop:true},
+    {id:101,n:"Burger Couple Combo",p:650,v:true,d:"2 Smash Burgers + Any 2 Drinks",pop:false},
+    {id:102,n:"Dosa Date Combo",p:850,v:true,d:"2 Masala Dosa + 2 Masala Tea",pop:false},
+    {id:103,n:"Indian Lovers Combo",p:900,v:true,d:"Pav Bhaji + Chole Bhature + 2 Beverages",pop:false},
+  ],
+};
+
+// Gallery images
+const GALLERY = [
+  {img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&h=430&fit=crop",n:"Chicken Biryani",p:"₹329",d:"Dum cooked aromatic rice — our bestseller!",em:"🍚",pop:true},
+  {img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=430&fit=crop",n:"Chicken Zinger Burger",p:"₹219",d:"Spicy crispy chicken — can't stop at one!",em:"🍔",pop:true},
+  {img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&h=430&fit=crop",n:"Cold Coffee",p:"₹129",d:"Our signature blend with ice cream",em:"☕",pop:true},
+  {img:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600&h=430&fit=crop",n:"Mango Shake",p:"₹119",d:"Fresh Alphonso mangoes blended to perfection",em:"🥭",pop:false},
+  {img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=430&fit=crop",n:"Brownie + Ice Cream",p:"₹149",d:"Warm gooey brownie with vanilla scoop",em:"🍫",pop:true},
+  {img:"https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=600&h=430&fit=crop",n:"Paneer Tikka",p:"₹229",d:"Smoky grilled cottage cheese — veg favorite!",em:"🧀",pop:true},
+];
+
+// Marquee data
+const mFoods=[
+  {e:"🌿",n:"Chilli Potato",p:"₹250",c:""},{e:"🧀",n:"Paneer Tikka",p:"₹300",c:""},{e:"🍞",n:"Cheesy Garlic Bread",p:"₹250",c:""},
+  {e:"🍛",n:"Masala Dosa",p:"₹280",c:""},{e:"🫕",n:"Chilli Paneer Dry",p:"₹300",c:""},{e:"🍚",n:"Schezwan Fried Rice",p:"₹380",c:""},
+  {e:"🍔",n:"Cheese Burst Burger",p:"₹350",c:""},{e:"🥙",n:"Paneer Tikka Wrap",p:"₹400",c:""},{e:"🧀",n:"Loaded Cheesy Nachos",p:"₹250",c:""},
+  {e:"🌮",n:"Veggie Loaded Burrito",p:"₹300",c:""},{e:"🍝",n:"Alfredo Pasta",p:"₹550",c:""},{e:"🌯",n:"Mexican Veg Wrap",p:"₹300",c:""},
+  {e:"🫕",n:"Manchurian Gravy",p:"₹450",c:""},{e:"🍜",n:"Chilli Garlic Noodles",p:"₹380",c:""},{e:"🥣",n:"Jini Dosa",p:"₹380",c:""},
+  {e:"🧆",n:"Kurkure Momos",p:"₹300",c:""},{e:"🥘",n:"Chole Bhature",p:"₹250",c:""},{e:"🫔",n:"Paneer Spring Roll",p:"₹300",c:""},
+  {e:"🍕",n:"Paneer Tikka Pizza",p:"₹450",c:""},{e:"🥟",n:"Steamed Momos",p:"₹200",c:""},{e:"🌶️",n:"Honey Chilli Potato",p:"₹300",c:""},
+  {e:"🥗",n:"Paneer Tikka Salad Bowl",p:"₹450",c:""},{e:"🍳",n:"Cheese Paneer Dosa",p:"₹400",c:""},{e:"🫙",n:"Veg Fried Rice",p:"₹300",c:""},
+];
+const mDrinks=[
+  {e:"☕",n:"Classic Cold Coffee",p:"₹400",c:"gold"},{e:"🥭",n:"Mango Alphonso Shake",p:"₹480",c:"gold"},{e:"🍃",n:"Virgin Mojito",p:"₹350",c:"gold"},
+  {e:"🍵",n:"Masala Tea",p:"₹250",c:"gold"},{e:"🍪",n:"Oreo Vanilla Shake",p:"₹480",c:"gold"},{e:"☕",n:"Cappuccino",p:"₹380",c:"gold"},
+  {e:"🧋",n:"Chocopie Shake",p:"₹450",c:"gold"},{e:"🥛",n:"Butterscotch Shake",p:"₹350",c:"gold"},{e:"☕",n:"Hazelnut Shake",p:"₹580",c:"gold"},
+  {e:"🍫",n:"Brownie with Ice Cream",p:"₹400",c:"gold"},{e:"🍦",n:"Premium Ice Cream",p:"₹250",c:"gold"},{e:"🎂",n:"Chocolate Brownie",p:"₹300",c:"gold"},
+  {e:"🍋",n:"Fresh Lime Soda",p:"₹250",c:"gold"},{e:"🍊",n:"Orange Delight",p:"₹350",c:"gold"},{e:"🍹",n:"Watermelon Basil",p:"₹380",c:"gold"},
+  {e:"🍵",n:"Filter Coffee",p:"₹250",c:"gold"},{e:"🧃",n:"Peach Iced Tea",p:"₹420",c:"gold"},{e:"🍹",n:"Blue Lagoon",p:"₹380",c:"gold"},
+  {e:"🍵",n:"Lemon Iced Tea",p:"₹420",c:"gold"},{e:"🥤",n:"KitKat Shake",p:"₹530",c:"gold"},{e:"☕",n:"Brownie Shake",p:"₹620",c:"gold"},
+];
+const mOffers=[
+  {e:"🌧️",n:"Monsoon Sale — 25% OFF",p:"Active Now",c:"offer"},{e:"❄️",n:"Winter Sale — 25% OFF",p:"Nov–Feb",c:"offer"},
+  {e:"🎓",n:"Student Discount — 10% OFF",p:"Show ID",c:"offer"},{e:"🪙",n:"Coin Flip — Win ₹500 Meal",p:"₹50 Entry",c:"offer"},
+  {e:"⭐",n:"Google Review = 10% OFF",p:"Show Review",c:"offer"},{e:"🎂",n:"Free Dessert on Birthday",p:"Show ID Card",c:"offer"},
+  {e:"☕",n:"Buy 2 Drinks, Get 1 Free",p:"Daily 3–6 PM",c:"offer"},{e:"🌙",n:"Late Night 15% OFF",p:"9–11 PM",c:"offer"},
+  {e:"📸",n:"Tag Us — Win a Surprise",p:"@thethirdlevel_",c:"offer"},{e:"🚇",n:"Metro Commuter Combo",p:"From ₹300",c:"offer"},
+  {e:"🎊",n:"Sunday Special Thali",p:"Limited Qty",c:"offer"},{e:"🏆",n:"Flip a Coin — Win ₹500",p:"Play Now!",c:"offer"},
+  {e:"🎁",n:"Refer a Friend — ₹50 OFF",p:"Both Save",c:"offer"},{e:"10%",n:"OFF for Students Daily",p:"Enrollment No.",c:"offer"},
+];
+
+// ── HELPERS ──
+const fc = (n) => `₹${Number(n).toLocaleString('en-IN')}`;
+function sTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
+function showToast(msg,err=false){
+  const c=document.getElementById('toastC');
+  const t=document.createElement('div');
+  t.className='toast'+(err?' err':'');t.textContent=msg;c.appendChild(t);
+  setTimeout(()=>t.remove(),2600);
+}
+
+// ── LOGIN ──
+function googleLogin(){
+  const names=["Rahul S.","Priya M.","Amit K.","Neha G.","Raj P."];
+  const n=names[Math.floor(Math.random()*names.length)];
+  currentUser={name:n,avatar:n[0]};
+  doLogin();
+}
+function phoneLogin(){
+  document.getElementById('phonePanel').style.display='flex';
+  document.getElementById('phonePanel').classList.add('on');
+}
+function closePhone(){
+  document.getElementById('phonePanel').style.display='none';
+}
+function sendOTP(){
+  const ph=document.getElementById('phoneInp').value;
+  if(ph.length!==10){showToast('Please enter a valid 10-digit mobile number.',true);return}
+  document.getElementById('phoneStep1').style.display='none';
+  document.getElementById('phoneStep2').style.display='block';
+}
+function verifyOTP(){
+  const otp=document.getElementById('otpInp').value;
+  if(otp.length!==6){showToast('Please enter the 6-digit OTP sent to your number.',true);return}
+  currentUser={name:"User "+document.getElementById('phoneInp').value.slice(-4),avatar:"U"};
+  closePhone();
+  doLogin();
+}
+function guestLogin(){
+  currentUser={name:"Guest",avatar:"👤"};
+  doLogin();
+}
+function doLogin(){
+  const ls=document.getElementById('loginScreen');
+  ls.classList.add('login-out');
+  setTimeout(()=>{
+    ls.style.display='none';
+    document.getElementById('navAv').textContent=currentUser.avatar;
+    document.getElementById('navName').textContent=currentUser.name;
+    showToast('Welcome back, '+currentUser.name+'!');
+  },440);
+}
+
+// ── INIT PAGE ──
+function initPage(){
+  // already called on DOMContentLoaded
+}
+
+// ── GALLERY ──
+function buildGallery(){
+  const grid=document.getElementById('galleryGrid');
+  const delays=['','delay1','delay2','delay3','delay4','delay5'];
+  grid.innerHTML=GALLERY.map((g,i)=>`
+    <div class="flip-card reveal ${delays[i]}">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <img class="flip-img" src="${g.img}" alt="${g.n}" loading="lazy">
+          <div class="flip-overlay">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between">
+              <div>
+                <div class="fo-name">${g.n}</div>
+                <div class="fo-price">${g.p}</div>
+              </div>
+              <button class="love-btn" id="love_${g.id}" onclick="event.stopPropagation();toggleLove(${g.id},'${g.n}')" title="Favourite">🤍</button>
+            </div>
+          </div>
+          ${g.pop?'<div class="fo-badge">⭐ Popular</div>':''}
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-content">
+            <div class="fbc-em">${g.em}</div>
+            <div class="fbc-name">${g.n}</div>
+            <div class="fbc-desc">${g.d}</div>
+            <div class="fbc-price">${g.p}</div>
+            <button class="fbc-add" onclick="quickAdd(${JSON.stringify(g).replace(/"/g,'&quot;')})">+ Add to Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function quickAdd(g){
+  // Find matching menu item or create temp
+  let found=null;
+  for(const cat of Object.values(MENU)){
+    found=cat.find(i=>i.n===g.n);
+    if(found)break;
+  }
+  if(found){addToCart(found.id,found.n,found.p)}
+  else{addToCart(99,g.n,parseInt(g.p.replace('₹','')))}
+  showToast(`✅ ${g.n} added to your order.`);
+}
+
+// ── MARQUEE ──
+function buildMarquee(){
+  const mkI=it=>`<div class="mitem ${it.c}"><span class="mi-em">${it.e}</span><span class="mi-name">${it.n}</span><span class="mi-price">${it.p}</span></div>`;
+  const fill=(id,items)=>{const el=document.getElementById(id);el.innerHTML=[...items,...items].map(mkI).join('')};
+  fill('t1',mFoods);fill('t2',mDrinks);fill('t3',mOffers);
+}
+
+// ── SCROLL REVEAL ──
+function initScrollReveal(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal,.rise,.tilt-r,.tilt-l').forEach(el=>obs.observe(el));
+}
+
+// ── ORDER MODAL ──
+let omCat=null;
+function openOrder(){
+  if(!currentUser){currentUser={name:'Guest',avatar:'👤'}}
+  document.getElementById('orderOverlay').classList.add('on');
+  orderStep=1;cart=[];
+  buildOmCats();
+  updateStepUI();
+  updateCartBar();
+}
+function closeOrder(){
+  document.getElementById('orderOverlay').classList.remove('on');
+  orderStep=1;cart=[];
+  // reset steps
+  for(let i=1;i<=3;i++){
+    document.getElementById('sc'+i).className='step-circle';
+    if(i<3)document.getElementById('sl'+i).className='step-line';
+  }
+  document.getElementById('sc1').classList.add('active');
+  document.getElementById('step1').style.display='block';
+  document.getElementById('step2').style.display='none';
+  document.getElementById('step3').style.display='none';
+  document.getElementById('stepSuccess').style.display='none';
+  document.getElementById('cartBar').style.display='flex';
+  document.getElementById('cbNext').textContent='Next →';
+}
+
+function buildOmCats(){
+  const cats=Object.keys(MENU);
+  omCat=omCat||cats[0];
+  const catEl=document.getElementById('omCats');
+  catEl.innerHTML=cats.map(c=>`<button class="om-cat ${c===omCat?'act':''}" onclick="switchOmCat('${c}')">${c}</button>`).join('');
+  buildOmItems();
+}
+function switchOmCat(c){omCat=c;buildOmCats()}
+function buildOmItems(){
+  const items=MENU[omCat];
+  document.getElementById('omItems').innerHTML=items.map(item=>{
+    const inCart=cart.find(c=>c.id===item.id);
+    return`<div class="om-item">
+      <div class="oi-name">${item.v?'🟢':'🔴'} ${item.n}${item.pop?' ⭐':''}</div>
+      <div class="oi-desc">${item.d}</div>
+      <div class="oi-foot">
+        <div class="oi-price">${fc(item.p)}</div>
+        ${inCart
+          ?`<div class="oi-qty">
+              <button class="qb" onclick="addToCart(${item.id},'${item.n}',${item.p},-1)">−</button>
+              <span class="qn">${inCart.qty}</span>
+              <button class="qb" style="background:var(--red)" onclick="addToCart(${item.id},'${item.n}',${item.p},1)">+</button>
+            </div>`
+          :`<button class="oi-add" onclick="addToCart(${item.id},'${item.n}',${item.p},1)">+ Add</button>`
+        }
+      </div>
+    </div>`
+  }).join('');
+}
+function addToCart(id,name,price,delta=1){
+  const idx=cart.findIndex(c=>c.id===id);
+  if(idx===-1&&delta>0){cart.push({id,name,price,qty:1})}
+  else if(idx!==-1){
+    cart[idx].qty+=delta;
+    if(cart[idx].qty<=0)cart.splice(idx,1);
+  }
+  if(document.getElementById('omItems').children.length)buildOmItems();
+  updateCartBar();
+}
+function updateCartBar(){
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('cbCount').textContent=count;
+  document.getElementById('cbTotal').textContent=fc(Math.round(total*1.05));
+  document.getElementById('cbNext').disabled=count===0;
+}
+
+// Cart total helper
+function getCartTotal(){return cart.reduce((s,i)=>s+i.price*i.qty,0)}
+function buildBillHTML(el){
+  const sub=getCartTotal();
+  const gst=Math.round(sub*.05);
+  const total=sub+gst;
+  el.innerHTML=`
+    <div class="bs-row"><span style="color:var(--m)">Subtotal</span><span>${fc(sub)}</span></div>
+    <div class="bs-row"><span style="color:var(--m)">GST (5%)</span><span>${fc(gst)}</span></div>
+    <hr class="bs-divider">
+    <div class="bs-row"><span class="font-bold" style="font-weight:700;font-size:15px">Total</span><span class="bs-total">${fc(total)}</span></div>`;
+}
+
+function nextStep(){
+  if(orderStep===1){
+    if(!cart.length){showToast('Please add at least one item to your order.',true);return}
+    orderStep=2;
+    // Build cart review
+    document.getElementById('cartList').innerHTML=cart.map(i=>`
+      <div class="cart-item-row">
+        <div class="oi-qty">
+          <button class="qb" onclick="addToCart(${i.id},'${i.name}',${i.price},-1);renderStep2()">−</button>
+          <span class="qn">${i.qty}</span>
+          <button class="qb" style="background:var(--red)" onclick="addToCart(${i.id},'${i.name}',${i.price},1);renderStep2()">+</button>
+        </div>
+        <div class="cir-name">${i.name}</div>
+        <div class="cir-price">${fc(i.price*i.qty)}</div>
+      </div>`).join('');
+    buildBillHTML(document.getElementById('billSum'));
+    document.getElementById('cbNext').textContent='Proceed to Pay →';
+  }else if(orderStep===2){
+    orderStep=3;
+    buildBillHTML(document.getElementById('billSum3'));
+    document.getElementById('cbNext').textContent='Place Order ✓';
+  }else if(orderStep===3){
+    placeOrder();return;
+  }
+  updateStepUI();
+}
+function renderStep2(){
+  document.getElementById('cartList').innerHTML=cart.map(i=>`
+    <div class="cart-item-row">
+      <div class="oi-qty">
+        <button class="qb" onclick="addToCart(${i.id},'${i.name}',${i.price},-1);renderStep2()">−</button>
+        <span class="qn">${i.qty}</span>
+        <button class="qb" style="background:var(--red)" onclick="addToCart(${i.id},'${i.name}',${i.price},1);renderStep2()">+</button>
+      </div>
+      <div class="cir-name">${i.name}</div>
+      <div class="cir-price">${fc(i.price*i.qty)}</div>
+    </div>`).join('');
+  buildBillHTML(document.getElementById('billSum'));
+  updateCartBar();
+}
+
+function updateStepUI(){
+  ['step1','step2','step3','stepSuccess'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('step'+orderStep).style.display='block';
+  // circles
+  for(let i=1;i<=3;i++){
+    const c=document.getElementById('sc'+i);
+    c.className='step-circle';
+    if(i<orderStep)c.classList.add('done');
+    else if(i===orderStep)c.classList.add('active');
+    if(i<3){
+      const l=document.getElementById('sl'+i);
+      l.className='step-line'+(i<orderStep?' done':'');
+    }
+  }
+}
+
+function setDine(mode){
+  dineMode=mode;
+  document.getElementById('dineBtn').classList.toggle('sel',mode==='dine');
+  document.getElementById('takeBtn').classList.toggle('sel',mode==='take');
+  document.getElementById('tableRow').style.display=mode==='dine'?'block':'none';
+}
+function setPay(mode){
+  payMode=mode;
+  ['po1','po2','po3','po4'].forEach(id=>document.getElementById(id).classList.remove('sel'));
+  const map={upi:'po1',cash:'po2',card:'po3',later:'po4'};
+  if(map[mode])document.getElementById(map[mode]).classList.add('sel');
+}
+
+let orderNum=1000;
+function placeOrder(){
+  const name=document.getElementById('custName').value.trim();
+  const phone=document.getElementById('custPhone').value.trim();
+  if(!name){showToast('Please enter your name to continue.',true);return}
+  if(phone.length!==10){showToast('Please enter a valid 10-digit phone number.',true);return}
+  const oId='TLC-'+(++orderNum);
+  const total=Math.round(getCartTotal()*1.05);
+  document.getElementById('sucInfo').innerHTML=`
+    <div class="suc-row"><span style="color:var(--m)">Order ID</span><span style="color:var(--gold);font-weight:700">${oId}</span></div>
+    <div class="suc-row"><span style="color:var(--m)">Name</span><span>${name}</span></div>
+    <div class="suc-row"><span style="color:var(--m)">Items</span><span>${cart.reduce((s,i)=>s+i.qty,0)}</span></div>
+    <div class="suc-row"><span style="color:var(--m)">Mode</span><span>${dineMode==='dine'?'🪑 Dine-in':'🛍️ Takeaway'}</span></div>
+    <div class="suc-row"><span style="color:var(--m)">Payment</span><span>${{upi:'📱 UPI',cash:'💵 Cash',card:'💳 Card',later:'🧾 Pay Later'}[payMode]}</span></div>
+    <div class="suc-row" style="border:none"><span style="font-weight:700">Total</span><span style="color:var(--gold);font-weight:800;font-size:16px">${fc(total)}</span></div>`;
+  document.getElementById('step3').style.display='none';
+  document.getElementById('stepSuccess').style.display='block';
+  document.getElementById('cartBar').style.display='none';
+  // Update step indicators
+  for(let i=1;i<=3;i++){const c=document.getElementById('sc'+i);c.className='step-circle done'}
+  for(let i=1;i<=2;i++){document.getElementById('sl'+i).className='step-line done'}
+  showToast(`✅ Order ${oId} confirmed! We're preparing your meal.`);
+}
+
+// ── COIN FLIP ──
+function pick(side){
+  chosen=side;
+  document.getElementById('hBtn').classList.toggle('sel',side==='heads');
+  document.getElementById('tBtn').classList.toggle('sel',side==='tails');
+  const r=document.getElementById('resultTxt');
+  r.textContent=side==='heads'?'👑 Heads chuna!':'₹ Tails chuna!';
+  r.className='result-d info';
+}
+function doFlip(){
+  if(!chosen){
+    const r=document.getElementById('resultTxt');
+    r.textContent='Please select Heads or Tails before flipping.';r.className='result-d info';return;
+  }
+  if(flipping)return;
+  flipping=true;
+  const coin=document.getElementById('coin3d');
+  const rtxt=document.getElementById('resultTxt');
+  const fb=document.getElementById('flipBtn');
+  fb.disabled=true;
+  rtxt.textContent='🪙 The coin is in the air...';rtxt.className='result-d info';
+  coin.style.animation='none';coin.offsetHeight;
+  const result=Math.random()<.5?'heads':'tails';
+  const won=result===chosen;
+  coin.style.animation=`${result==='heads'?'flipH':'flipT'} 2.8s cubic-bezier(.25,.46,.45,.94) forwards`;
+  flipTotal++;document.getElementById('fCount').textContent=flipTotal;
+  setTimeout(()=>{
+    coin.style.animation='none';coin.offsetHeight;
+    coin.style.transform=result==='heads'?'rotateY(0deg)':'rotateY(180deg)';
+    coin.style.animation='wobble 0.6s ease-out forwards';
+    setTimeout(()=>{
+      coin.style.animation='none';
+      if(won){rtxt.textContent=`✅ ${result.toUpperCase()}! AAPNE JEETA!`;rtxt.className='result-d win';markDot('w');setTimeout(showWin,600)}
+      else{rtxt.textContent=`❌ ${result.toUpperCase()} — Wrong! Try Again!`;rtxt.className='result-d lose';markDot('l')}
+      flipping=false;fb.disabled=false;chosen=null;
+      document.getElementById('hBtn').classList.remove('sel');
+      document.getElementById('tBtn').classList.remove('sel');
+    },650);
+  },2850);
+}
+function markDot(type){const d=document.getElementById('d'+(dotIdx%3));d.className='sdot '+type;dotIdx++}
+function showWin(){document.getElementById('winOv').classList.add('on');launchConfetti()}
+function closeWin(){document.getElementById('winOv').classList.remove('on');document.querySelectorAll('.cpie').forEach(c=>c.remove())}
+function launchConfetti(){
+  const cols=['#E8171B','#F5A623','#22C55E','#3B82F6','#FFD700','#FF69B4','#fff'];
+  for(let i=0;i<90;i++){
+    setTimeout(()=>{
+      const c=document.createElement('div');c.className='cpie';
+      const sz=Math.random()*8+4;
+      Object.assign(c.style,{
+        left:Math.random()*100+'vw',top:'-10px',width:sz+'px',height:sz+'px',
+        background:cols[Math.floor(Math.random()*cols.length)],
+        borderRadius:Math.random()>.5?'50%':'2px',
+        animationDuration:(Math.random()*2.5+1.8)+'s',animationDelay:(Math.random()*.3)+'s',
+      });
+      document.body.appendChild(c);setTimeout(()=>c.remove(),4500);
+    },i*22);
+  }
+}
+
+
+// ── LOVE / FAVOURITE ──
+const loves = {};
+function toggleLove(id, name) {
+  loves[id] = !loves[id];
+  const btn = document.getElementById('love_' + id);
+  if (btn) {
+    btn.textContent = loves[id] ? '❤️' : '🤍';
+    btn.classList.toggle('loved', loves[id]);
+    showToast(loves[id] ? '❤️ ' + name + ' added to favourites!' : '💔 Removed from favourites');
+  }
+}
+
+// ── GOOGLE REVIEW ──
+function openGoogleReview() {
+  window.open('https://maps.google.com/?q=The+Third+Level+Cafe+Kashmiri+Gate+Delhi#reviews', '_blank');
+  showToast('⭐ Thank you for reviewing us on Google!');
+}
+
+// ── STAR RATING ──
+let selectedStar = 0;
+function setStar(n) {
+  selectedStar = n;
+  document.querySelectorAll('#starRow .star').forEach((s, i) => {
+    s.classList.toggle('on', i < n);
+  });
+}
+
+// ── REVIEW DATA ──
+const defaultReviews = [
+  { name: "Priya Sharma", av: "P", stars: 5, text: "Absolutely amazing experience! The Cold Coffee is the best I have had in Delhi. I won the Coin Flip game and got a FREE meal worth Rs.400! The staff is incredibly warm and welcoming. Highly recommend!", item: "Classic Cold Coffee + Coin Flip Win", date: "2 days ago", verified: true },
+  { name: "Rahul Gupta", av: "R", stars: 5, text: "Never expected to find such a fantastic cafe inside a metro station. The Chilli Paneer Dry was perfectly spiced, and the ambience with the retro murals is something else entirely. Will definitely be coming back!", item: "Chilli Paneer Dry", date: "5 days ago", verified: true },
+  { name: "Ananya Singh", av: "A", stars: 5, text: "The Third Level is literally the BEST stop on the Yellow Line! Paneer Tikka was smoky and perfectly cooked. The entire experience — from decor to service — is top tier. Truly a hidden gem inside Kashmiri Gate Metro.", item: "Paneer Tikka (Dry)", date: "1 week ago", verified: true },
+  { name: "Karan Mehta", av: "K", stars: 4, text: "Excellent food quality! The Masala Dosa was crispy with a perfectly spiced filling. Loved the retro aesthetic. Slightly busy during peak hours, but the food more than makes up for the wait. Solid 4 stars!", item: "Masala Dosa", date: "1 week ago", verified: false },
+  { name: "Sneha Verma", av: "S", stars: 5, text: "The Brownie with Ice Cream is an absolute dream — warm, gooey, and perfectly paired with cold vanilla ice cream. Everything I ordered was fresh and of great quality. Best cafe in the metro by far!", item: "Brownie with Ice Cream", date: "2 weeks ago", verified: true },
+  { name: "Amit Joshi", av: "A", stars: 5, text: "Won the Coin Flip game and received a FREE meal — the Alfredo Pasta! Genuinely thought it was a gimmick but they honoured it completely. Outstanding food, wonderful staff, and a one-of-a-kind dining experience. 10/10!", item: "Won Coin Flip! Alfredo Pasta FREE", date: "2 weeks ago", verified: true },
+];
+let allReviews = [...defaultReviews];
+
+function renderReviews() {
+  const container = document.getElementById('reviewCards');
+  if (!container) return;
+  container.innerHTML = allReviews.map(r => `
+    <div class="rcard">
+      <div class="rcard-top">
+        <div class="rcard-av">${r.av}</div>
+        <div>
+          <div class="rcard-name">${r.name} ${r.verified ? '<span class="rcard-badge">✓ Verified</span>' : ''}</div>
+          <div class="rcard-date" style="font-size:11px;color:var(--m)">${r.date}</div>
+        </div>
+      </div>
+      <div class="rcard-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+      <div class="rcard-text">${r.text}</div>
+      ${r.item ? `<div style="margin-top:8px;font-size:11px;color:var(--gold)">📌 ${r.item}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+function submitReview() {
+  const name = document.getElementById('rfName').value.trim();
+  const text = document.getElementById('rfText').value.trim();
+  const item = document.getElementById('rfItem').value.trim();
+  if (!name) { showToast('Please enter your name.', true); return; }
+  if (!text) { showToast('Please share your experience.', true); return; }
+  if (!selectedStar) { showToast('Please select a star rating.', true); return; }
+  const newR = {
+    name, av: name[0].toUpperCase(), stars: selectedStar,
+    text, item, date: 'Just now', verified: !!currentUser
+  };
+  allReviews.unshift(newR);
+  renderReviews();
+  // Reset form
+  document.getElementById('rfName').value = '';
+  document.getElementById('rfText').value = '';
+  document.getElementById('rfItem').value = '';
+  setStar(0); selectedStar = 0;
+  showToast('🌟 Thank you for your review!');
+}
+
+// Auto init page on load
+window.addEventListener('DOMContentLoaded', ()=>{
+  renderReviews();
+  buildGallery();
+  buildMarquee();
+  setTimeout(initScrollReveal, 300);
+});
+
+
+
+// ══ PRE-FLIP MODAL ══
+let pfStarSelected = 0;
+let pfPaid = false;
+let pfReviewed = false;
+
+function openPF() {
+  pfPaid = false; pfReviewed = false; pfStarSelected = 0;
+  document.getElementById('prefOv').classList.add('on');
+  // Reset to step 1
+  ['pfStep1','pfStep2','pfStep3'].forEach((id,i) => {
+    document.getElementById(id).style.display = i===0 ? 'block' : 'none';
+  });
+  ['psd1','psd2','psd3'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    el.className = 'pf-step-dot' + (i===0?' act':'');
+  });
+  ['psl1','psl2'].forEach(id => document.getElementById(id).className='pf-line');
+  document.querySelectorAll('.pf-star').forEach(s => s.classList.remove('lit'));
+  document.getElementById('pfStarMsg').textContent = '';
+  document.getElementById('pfReviewDone').disabled = true;
+}
+
+function closePF() {
+  document.getElementById('prefOv').classList.remove('on');
+}
+
+function pfNext(step) {
+  if (step === 1) {
+    pfPaid = true;
+    document.getElementById('pfStep1').style.display='none';
+    document.getElementById('pfStep2').style.display='block';
+    document.getElementById('psd1').className='pf-step-dot done';
+    document.getElementById('psl1').className='pf-line done';
+    document.getElementById('psd2').className='pf-step-dot act';
+  } else if (step === 2) {
+    if (pfStarSelected < 5) { showToast('Please select 5 stars to unlock your coin flip.', true); return; }
+    pfReviewed = true;
+    document.getElementById('pfStep2').style.display='none';
+    document.getElementById('pfStep3').style.display='block';
+    document.getElementById('psd2').className='pf-step-dot done';
+    document.getElementById('psl2').className='pf-line done';
+    document.getElementById('psd3').className='pf-step-dot act';
+  }
+}
+
+function pfSetStar(n) {
+  pfStarSelected = n;
+  document.querySelectorAll('.pf-star').forEach((s, i) => {
+    s.classList.toggle('lit', i < n);
+  });
+  const msgs = ['','Needs improvement','Average','Good','Very good!','Excellent! Thank you! ❤️'];
+  document.getElementById('pfStarMsg').textContent = msgs[n] || '';
+  document.getElementById('pfStarMsg').style.color = n===5 ? '#22C55E' : '#888';
+  document.getElementById('pfReviewDone').disabled = n < 5;
+}
+
+function closePFandFlip() {
+  closePF();
+  document.getElementById('startFlipBtn').style.display = 'none';
+  document.getElementById('flipUIHidden').style.display = 'block';
+  showToast('🪙 You are all set! Choose Heads or Tails to flip the coin.');
+}
+
+// ══ STUDENT DISCOUNT VERIFICATION ══
+function verifyStudent() {
+  const val = document.getElementById('studentId').value.trim();
+  const res = document.getElementById('scResult');
+  res.style.display = 'none';
+  if (!val) { 
+    res.className='sc-result err'; res.textContent='Please enter your enrollment or admission number.'; res.style.display='block'; return; 
+  }
+  // Validate: min 6 chars, alphanumeric with common separators
+  const pattern = /^[A-Za-z0-9\/\-\_\.]{6,25}$/;
+  if (!pattern.test(val)) {
+    res.className='sc-result err'; 
+    res.innerHTML='❌ Invalid format. Please enter the exact enrollment or admission number printed on your student ID card (6–25 alphanumeric characters).'; 
+    res.style.display='block'; return;
+  }
+  // Show success
+  res.className='sc-result ok';
+  res.innerHTML='✅ Student ID Verified! A <strong>10% discount</strong> has been applied to your order. Please present your original student ID card at the counter.';
+  res.style.display='block';
+  showToast('🎓 Student discount verified! 10% OFF applied.');
+}
+
+// ══ HAMBURGER MENU ══
+function toggleHMenu(){
+  const btn = document.getElementById('hbgBtn');
+  const panel = document.getElementById('hmenuPanel');
+  const overlay = document.getElementById('hmenuOverlay');
+  const isOpen = panel.classList.contains('open');
+  if(isOpen){ closeHMenu(); } else { openHMenu(); }
+}
+function openHMenu(){
+  document.getElementById('hbgBtn').classList.add('open');
+  document.getElementById('hmenuPanel').classList.add('open');
+  document.getElementById('hmenuOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  // Sync user info
+  const u = currentUser || {name:'Guest',avatar:'?'};
+  document.getElementById('hmpAv').textContent = u.avatar || u.name?.[0] || '?';
+  document.getElementById('hmpName').textContent = u.name || 'Guest';
+}
+function closeHMenu(){
+  document.getElementById('hbgBtn').classList.remove('open');
+  document.getElementById('hmenuPanel').classList.remove('open');
+  document.getElementById('hmenuOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function hNavTo(id){
+  closeHMenu();
+  setTimeout(()=>{
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  }, 320);
+}
+// Close on Escape key
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeHMenu(); });
+
+// Close modals on overlay click
+document.getElementById('orderOverlay').addEventListener('click',function(e){if(e.target===this)closeOrder()});
+document.getElementById('winOv').addEventListener('click',function(e){if(e.target===this)closeWin()});
+</script>
+</body>
+</html>
